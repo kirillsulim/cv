@@ -1,4 +1,3 @@
---- !Data
 personal:
   name:
     ru: Кирилл
@@ -13,16 +12,16 @@ personal:
   skype: kirillsulim
 
 education:
-- from: 2007-09-01
-  to: 2011-06-30
+- from_date: "2007-09-01"
+  to_date: "2011-06-30"
   university:
     ru: Уральский федеральный университет имени первого Президента России Б.Н. Ельцина
   faculty:
     ru: Физико-технический Институт, кафедра теоретической физики и прикладной математики
   speciality:
     ru: Прикладная математика и физика
-- from: 2011-07-01
-  to: 2013-06-30
+- from_date: "2011-07-01"
+  to_date: "2013-06-30"
   university:
     ru: Уральский федеральный университет имени первого Президента России Б.Н. Ельцина
   faculty:
@@ -31,8 +30,8 @@ education:
     ru: Физика
 
 work_experience:
-- from: 2013-12-01
-  to: 2014-09-01
+- from_date: "2013-12-01"
+  to_date: "2014-09-01"
   organisation:
     name:
       ru: Банк24.ру
@@ -60,8 +59,8 @@ work_experience:
   - Google testing framework
   - Jenkins CI
 
-- from: 2014-09-01
-  to: 2015-06-30
+- from_date: "2014-09-01"
+  to_date: "2015-06-30"
   organisation:
     name:
       ru: Уральский федеральный университет имени первого Президента России Б.Н. Ельцина
@@ -78,8 +77,8 @@ work_experience:
   - WinForms
   - PostSharp
 
-- from: 2015-08-25
-  to: 2018-05-30
+- from_date: "2015-08-25"
+  to_date: "2018-05-30"
   organisation:
     name:
       ru: Яндекс
@@ -108,8 +107,8 @@ work_experience:
   - Python 2
   - Python 3
 
-- from: 2018-06-01
-  to: 2019-03-30
+- from_date: "2018-06-01"
+  to_date: "2019-03-30"
   organisation:
     name:
       ru: СКБ Контур
@@ -154,8 +153,8 @@ work_experience:
   - Docker
   - Zookeeper
 
-- from: 2019-05-01
-  to: 2019-06-30
+- from_date: "2019-05-01"
+  to_date: "2019-06-30"
   organisation:
     name:
       ru: ООО Мой Стенд
@@ -171,8 +170,8 @@ work_experience:
   - ru: >
       Составил перечень проблем компании и возможные пути их решения.
 
-- from: 2019-08-29
-  currennt: true
+- from_date: "2019-08-29"
+  current: true
   organisation:
     name:
       ru: Яндекс
@@ -185,6 +184,9 @@ work_experience:
       Участие в квартальном планировании
   - ru: >
       Разработал inventory плагин для ansible для внутренней системы оркестрации
+  - ru: >
+      Реализовал проект по генерации статических страниц городов отелей.
+      Для генераци кросс-ссылок использовался алгорим на основе имитации отжига (simulated annealing).
   technologies:
   - Java 11
   - Spring
