@@ -54,7 +54,7 @@ work_experience:
       Спроектировал и разработал C++ сервис, осуществляющий перенос данных из 1С в Oracle базу данных через JSON-API
       банка. Внедрил CI для этого сервиса на базе Jenkins.
     en: >
-      Designed and developed a C ++ service that transfers data from 1C to Oracle database through the bank's JSON-API. Implemented CI for this Jenkins based service.
+      Designed and developed a C++ service that transfers data from 1С to Oracle database through the bank's JSON-API. Implemented CI for this Jenkins based service.
   technologies:
   - Java 7
   - Java EE
@@ -65,7 +65,7 @@ work_experience:
   - jQuery
   - Angular JS
   - Selenium
-  - С++
+  - C++
   - MFC
   - Poco
   - Google testing framework
