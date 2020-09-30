@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{data.personal.name[lang]}} {{data.personal.surname[lang]}} - Curriculum Vitae</title>
+
+<meta name="viewport" content="width=device-width"/>
+<meta name="description" content="The Curriculum Vitae of {{data.personal.name[lang]}} {{data.personal.surname[lang]}}."/>
+<meta charset="UTF-8"> 
+
+<link type="text/css" rel="stylesheet" href="style.css">
+<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body id="top">
+<div id="cv" class="instaFade">
+	<div class="mainDetails">
+		<div id="headshot" class="quickFade">
+			<img src="sulim.jpg" alt="{{data.personal.name[lang]}} {{data.personal.surname[lang]}}" />
+		</div>
+		
+		<div id="name">
+			<h1 class="quickFade delayTwo">{{data.personal.name[lang]}} {{data.personal.surname[lang]}}</h1>
+			<h2 class="quickFade delayThree">{{job_title}}</h2>
+		</div>
+		
+		<div id="contactDetails" class="quickFade delayFour">
+			<ul>
+				<li>e: <a href="mailto:{{data.personal.email}}" target="_blank">{{data.personal.email}}</a></li>
+				<li>w: <a href="{{data.personal.site}}">{{data.personal.site}}</a></li>
+				<li>m: {{data.personal.phone}}</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<div id="mainArea" class="quickFade delayFive">
+		<!--section>
+			<article>
+				<div class="sectionTitle">
+					<h1>Personal Profile</h1>
+				</div>
+				
+				<div class="sectionContent">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus, interdum at scelerisque in, porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
+				</div>
+			</article>
+			<div class="clear"></div>
+		</section-->
+		
+		
+		<section>
+			<div class="sectionTitle">
+				<h1>Work Experience</h1>
+			</div>
+			
+			<div class="sectionContent">
+				{% for job in data.work_experience|reverse %}
+				<article>
+					<h2>{{job.position[lang]}} at {{job.organisation.name[lang]}}</h2>
+					<p class="subDetails">{{job.from_date}} - {% if job.current %}Present{% else %}{{job.to_date}}{% endif %}</p>
+					<ul>
+						{% for bullet in job.bullets %}
+						<li>{{bullet[lang]}}</li>
+						{% endfor %}
+					</ul>
+					<p></p>
+					{% if job.technologies %}
+					<h3>Key skills:</h3>
+					<p>{{job.technologies | join(", ")}}</p>
+					{% endif %}
+				</article>
+				{% endfor %}
+			</div>
+
+			<div class="clear"></div>
+		</section>
+		
+		<section>
+			<div class="sectionTitle">
+				<h1>Education</h1>
+			</div>
+			
+			<div class="sectionContent">
+				{% for education in data.education|reverse %}
+				<article>
+					<h2>{{education.university[lang]}} / {{education.faculty[lang]}}</h2>
+					<p class="subDetails">{{education.speciality[lang]}}</p>
+					<p></p>
+				</article>
+				{% endfor %}
+			</div>
+			<div class="clear"></div>
+		</section>
+		
+	</div>
+</div>
+</body>
+</html>

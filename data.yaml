@@ -8,7 +8,7 @@ personal:
   phone: +7-912-66-123-16
   email: kirillsulim@gmail.com
   github: kirillsulim
-  site: https://su0.io
+  site: http://su0.io
   skype: kirillsulim
 
 education:
@@ -16,18 +16,24 @@ education:
   to_date: "2011-06-30"
   university:
     ru: Уральский федеральный университет имени первого Президента России Б.Н. Ельцина
+    en: Ural Federal University
   faculty:
     ru: Физико-технический Институт, кафедра теоретической физики и прикладной математики
+    en: Institute of Physics and Technology
   speciality:
     ru: Прикладная математика и физика
+    en: BSc Applied Mathematics and Physics
 - from_date: "2011-07-01"
   to_date: "2013-06-30"
   university:
     ru: Уральский федеральный университет имени первого Президента России Б.Н. Ельцина
+    en: Ural Federal University
   faculty:
     ru: Институт Естественных Наук, Физический факультет
+    en: Institute of Natural Sciences
   speciality:
     ru: Физика
+    en: MSc Physics
 
 work_experience:
 - from_date: "2013-12-01"
@@ -35,14 +41,20 @@ work_experience:
   organisation:
     name:
       ru: Банк24.ру
+      en: Bank24.ru
   position:
     ru: Специалист
+    en: Java developer
   bullets:
   - ru: >
       Участвовал в разработке интернет банка и сервиса knopka.com.
+    en: >
+      Participated in the development of the internet bank and the knopka.com service.
   - ru: >
       Спроектировал и разработал C++ сервис, осуществляющий перенос данных из 1С в Oracle базу данных через JSON-API
       банка. Внедрил CI для этого сервиса на базе Jenkins.
+    en: >
+      Designed and developed a C ++ service that transfers data from 1C to Oracle database through the bank's JSON-API. Implemented CI for this Jenkins based service.
   technologies:
   - Java 7
   - Java EE
@@ -64,14 +76,20 @@ work_experience:
   organisation:
     name:
       ru: Уральский федеральный университет имени первого Президента России Б.Н. Ельцина
+      en: Ural Federal University
   position:
     ru: Младший научный сотрудник
+    en: Junior Researcher
   bullets:
   - ru: >
       Разработал программу, моделирующей клетку сердца.
+    en: >
+      Developed a program that simulates a heart cell.
   - ru: >
       Проводил консультации студентов и аспирантов по вопросам проектирования приложений, настройке инфраструктуры
       и т. п.
+    en: >
+      Consulting students and postgraduates on application design, infrastructure configuration
   technologies:
   - C#
   - WinForms
@@ -82,20 +100,32 @@ work_experience:
   organisation:
     name:
       ru: Яндекс
+      en: Yandex
   position:
     ru: Java-разработчик
+    en: Java developer
   bullets:
   - ru: >
       Участвовал в разработке API для мобильных приложений и партнеров с использованием библиотеки Netty для
       асинхронной обработки запросов
+    en: >
+      Participated in the development of API for mobile applications and partners using the Netty library for asynchronous request processing
   - ru: >
       Настроил систему переноса данных между Map-Reduce системами на базе Airflow
+    en: >
+      Configured a data transfer system between Map-Reduce systems based on Airflow
   - ru: >
       Создал Map-Reduce задачи для сегментации аудитории Яндекс.Маркета
+    en: >
+      Developed Map-Reduce tasks for segmentation of the Yandex.Market audience
   - ru: >
       Провел 12 первичных собеседований разработчиков
+    en: >
+      Conducted 12 initial developer interviews
   - ru: >
       Курировал новых сотрудников
+    en: >
+      Supervised new employees
   technologies:
   - Java 8
   - Spring
@@ -112,38 +142,60 @@ work_experience:
   organisation:
     name:
       ru: СКБ Контур
+      en: SKB Kontur
   position:
     ru: Инженер-программист
+    en: Software engineer
   bullets:
   - ru: >
       Совместно с командой спроектировал и разработал систему передачи метрик и логов приложений на основе Kafka с
       использованием бинарного протокола
+    en: >
+      Designed and developed a system for transferring metrics and application logs based on Kafka with using a binary protocol
   - ru: >
       Осуществил сбор требований для нескольких компонентов системы и составил внутренне ТЗ на основе собранных
       требований.
+    en: >
+      Carried out the collection of requirements for several components of the system and compiled internally the design document based on the collected requirements.
   - ru: >
       Среди конечных потребителей данных Elasticsearch, Cassandra, Graphite, Sentry.
+    en: >
+      End consumers of data include Elasticsearch, Cassandra, Graphite, Sentry.
   - ru: >
       Перенос данных осуществлялся через Kafka Streams и Kafka Consumer.
       Хранение метаданных осуществлялось в кластере Zookeeper.
+    en: >
+      Data transfer was carried out through Kafka Streams and Kafka Consumer. The metadata was stored in a Zookeeper cluster.
   - ru: >
       Разработанная система выдерживала максимальную нагрузку в 30 MB/sec (до 30 000 RPS) на одной ноде. Общая нагрузка
       на кластер достигала 100 000 RPS.
+    en: >
+      The developed system withstood a maximum load of 30 MB / sec (up to 30,000 RPS) on one node. Total load per cluster reached 100,000 RPS.
   - ru: >
       Разработал тестовое задание для стажеров и автоматическую систему его проверки. Система проверки позволила
       избежать ручной проверки соответствия тестовых заданий техническим требованиям.
+    en: >
+      Developed a test task for trainees and an automatic system for checking it. The verification system allowed avoid manual checking of compliance of test items with technical requirements.
   - ru: >
       Провел 10 собеседований разработчиков и стажеров. Курировал двух стажеров, ставил им задачи и контролировал
       выполнение. По результатам стажировки, оба стажеры были взяты на постоянную работу.
+    en: >
+      Conducted 10 interviews for developers and interns. Supervised two interns, assigned them tasks and supervised performance. As a result of the internship, both interns were hired for permanent jobs.
   - ru: >
       Организовал процесс ведения задач в таск-трекере, что обеспечило большую прозрачность по прогрессу задач для
       команды и заказчиков из других отделов.
+    en: >
+      Organized the process of managing tasks in the task tracker, which provided greater transparency on the progress of tasks for teams and customers from other departments.
   - ru: >
       Вел wiki-страницу проекта с информацией о проекте и howto для новых членов команды
+    en: >
+      Maintained a wiki page of the project with information about the project and howto for new team members
   - ru: >
       Участвовал в развитии альтернативных стеков в Контуре (Linux, Java), провел секции BrainStorm по идеям новых
       продуктов и технологий (на основе идей были сформулированы идеи новых продуктов) и по проблемам развития Java
       внутри компании (на основе идей были обозначены проблемы развития Java-стека и возможные пути их решения).
+    en: >
+      Participated in the development of alternative stacks in the Contour (Linux, Java), conducted BrainStorm sections on ideas for new products and technologies (ideas for new products were formulated on the basis of ideas) and on problems of Java development within the company (on the basis of ideas, the problems of the development of the Java stack and possible solutions were identified).
   technologies:
   - Java 8
   - multithreading
@@ -158,35 +210,55 @@ work_experience:
   organisation:
     name:
       ru: ООО Мой Стенд
+      en: LLC My Stand
   position:
     ru: Технический Директор
+    en: CTO
   bullets:
   - ru: >
       Разработал систему грейдов QA специалистов.
+    en: >
+      Developed a system of grades for QA specialists.
   - ru: >
       Провел 3 собеседования кандидатов на должности разработчиков.
+    en: >
+      Conducted 3 interviews of candidates for developer positions.
   - ru: >
       Разработал регламент и систему оценки проектов, адаптированную под нужды компании.
+    en: > 
+      Developed a regulation and a project evaluation system adapted to the needs of the company.
   - ru: >
       Составил перечень проблем компании и возможные пути их решения.
+    en: >
+      Compiled a list of the company's problems and possible solutions.
 
 - from_date: "2019-08-29"
   current: true
   organisation:
     name:
       ru: Яндекс
+      en: Yandex
   position:
     ru: Разработчик
+    en: Developer
   bullets:
   - ru: >
       Разработка и поддержка различных компонентов сервиса Яндекс.Путешествия
+    en: >
+      Development and support of various components of the Yandex.Travel service
   - ru: >
       Участие в квартальном планировании
+    en: >
+      Participation in quarterly planning
   - ru: >
       Разработал inventory плагин для ansible для внутренней системы оркестрации
+    en: >
+      Developed an inventory plugin for ansible for an internal orchestration system
   - ru: >
       Реализовал проект по генерации статических страниц городов отелей.
       Для генераци кросс-ссылок использовался алгорим на основе имитации отжига (simulated annealing).
+    en: >
+      Implemented a project to generate static pages for cities. A simulated annealing algorithm was used to generate cross-links.
   technologies:
   - Java 11
   - Spring
