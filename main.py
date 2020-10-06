@@ -1,8 +1,10 @@
 import sys
+import os
 from argparse import ArgumentParser
 from pathlib import Path
 from shutil import copy
 from typing import List
+from tempfile import TemporaryDirectory
 
 from pylatex import Document, Section, Subsection, Package
 from pylatex.base_classes import Command
@@ -17,6 +19,8 @@ import pydrive2
 
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
+
+from git import Repo
 
 from model import Data, get_data
 
@@ -42,6 +46,11 @@ class Runner:
         self.build_dir = Path("./build")
         self.debug = args.debug
 
+        self.github_user = "ksbenderbot"
+        self.github_token = os.environ["GITHUB_TOKEN"]
+        self.git_user_email = "ksbenderbot@ya.ru"
+        self.git_user_name = "Bender Rodriguez"
+
     def run(self) -> int:
         data = get_data(self.data_file, self.lang, self.profiles)
 
@@ -49,7 +58,8 @@ class Runner:
         self._render_latex(data)
         # self._upload_to_gdrive()
         # self._upload_to_hh(data)
-        self._render_md(data)
+        rendered_md = self._render_md(data)
+        self._commit_to_github(rendered_md)
 
         return 0
 
@@ -120,7 +130,7 @@ class Runner:
         html_rendered = html_dir / "index.html"
         html_rendered.write_text(rendered)
 
-    def _render_md(self, data: Data):
+    def _render_md(self, data: Data) -> Path:
         env = Environment()
         template = env.from_string(Path("./resources/md/template.md").read_text())
         rendered = template.render(data=data, lang=self.lang, job_title="Java developer")
@@ -130,11 +140,33 @@ class Runner:
         md_rendered = md_dir / f"{data.personal.name}_{data.personal.surname}_{self.CV_TRANSLATION[self.lang]}.md"
         md_rendered.write_text(rendered)
 
+        return md_rendered
+
     def _upload_to_gdrive(self):
         pass
 
     def _upload_to_hh(self, data: Data):
         pass
+
+    def _commit_to_github(self, md_file: Path):
+        repo_dir = self.build_dir / "github"
+        repo_dir.mkdir(exist_ok=True, parents=True)
+
+        with TemporaryDirectory(dir=repo_dir) as tmp_dir:
+            repo = Repo.clone_from(f"https://{self.github_user}:{self.github_token}@github.com/kirillsulim/kirillsulim", tmp_dir, depth=1)
+            repo_cv_file = Path(repo.working_tree_dir) / "cv.md"
+            copy(md_file, repo_cv_file)
+
+            repo.config_writer()\
+                .set_value("user", "name", self.git_user_name)\
+                .set_value("user", "email", self.git_user_email)\
+                .release()
+
+            repo.git.add(".")
+
+            if repo.is_dirty():
+                repo.git.commit("-m", "Automatic CV update")
+                repo.git.push()
 
 
 if __name__ == '__main__':

@@ -6,6 +6,8 @@ certifi==2020.6.20
 cffi==1.14.3
 chardet==3.0.4
 cryptography==3.1.1
+gitdb==4.0.5
+GitPython==3.1.9
 google-api-core==1.22.3
 google-api-python-client==1.12.3
 google-auth==1.22.0
@@ -33,6 +35,7 @@ PyYAML==5.3.1
 requests==2.24.0
 rsa==4.6
 six==1.15.0
+smmap==3.0.4
 typeguard==2.9.1
 typing-extensions==3.7.4.3
 typing-inspect==0.6.0
