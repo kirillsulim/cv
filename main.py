@@ -12,6 +12,12 @@ from pylatex.lists import Itemize
 
 from jinja2 import Environment
 
+import requests
+import pydrive2
+
+from pydrive2.auth import GoogleAuth
+from pydrive2.drive import GoogleDrive
+
 from model import Data, load_data
 
 
@@ -25,18 +31,23 @@ class Runner:
         parser = ArgumentParser()
         parser.add_argument("--data-file", type=Path, default=Path("./data.yaml"))
         parser.add_argument("--lang", choices=["ru", "en"], default="ru")
+        parser.add_argument("--debug", action="store_true")
 
         args = parser.parse_args(args)
 
         self.data_file = args.data_file
         self.lang = args.lang
         self.build_dir = Path("./build")
+        self.debug = args.debug
 
     def run(self) -> int:
         data = load_data(self.data_file)
 
         # self._render_html(data)
-        self._render_latex(data)
+        # self._render_latex(data)
+        # self._upload_to_gdrive()
+        # self._upload_to_hh(data)
+        self._render_md(data)
 
         return 0
 
@@ -93,7 +104,7 @@ class Runner:
         out_dir = self.build_dir / "pdf"
         out_dir.mkdir(exist_ok=True, parents=True)
         out_file = out_dir / f"{data.personal.name[lang]}_{data.personal.surname[lang]}_{self.CV_TRANSLATION[lang]}"
-        doc.generate_pdf(str(out_file), clean=False, clean_tex=False)
+        doc.generate_pdf(str(out_file), clean=not self.debug, clean_tex=not self.debug)
 
     def _render_html(self, data: Data):
         env = Environment()
@@ -108,7 +119,23 @@ class Runner:
         html_rendered = html_dir / "index.html"
         html_rendered.write_text(rendered)
 
-        stop = True
+    def _render_md(self, data: Data):
+        lang = self.lang
+
+        env = Environment()
+        template = env.from_string(Path("./resources/md/template.md").read_text())
+        rendered = template.render(data=data, lang=lang, job_title="Java developer")
+
+        md_dir = self.build_dir / "md"
+        md_dir.mkdir(exist_ok=True, parents=True)
+        md_rendered = md_dir / f"{data.personal.name[lang]}_{data.personal.surname[lang]}_{self.CV_TRANSLATION[lang]}.md"
+        md_rendered.write_text(rendered)
+
+    def _upload_to_gdrive(self):
+        pass
+
+    def _upload_to_hh(self, data: Data):
+        pass
 
 
 if __name__ == '__main__':
