@@ -1,21 +1,25 @@
-# {{data.personal.name[lang]}} {{data.personal.surname[lang]}}
+# {{data.personal.name}} {{data.personal.surname}}
 
-email: [{{data.personal.email}}](mailto:{{data.personal.email}})
+{% if data.contacts.email %}
+email: [{{data.contacts.email}}](mailto:{{data.contacts.email}})
+{% endif %}
 
-site: [{{data.personal.site}}]({{data.personal.site}})
+{% if data.contacts.site %}
+site: [{{data.contacts.site}}]({{data.contacts.site}})
+{% endif %}
 
-phone: {{data.personal.phone}}
+{% if data.contacts.phone %}
+phone: {{data.contacts.phone}}
+{% endif %}
 
 
 ## Work Experience
 
 {% for job in data.work_experience|reverse %}
 
-### {{job.position[lang]}} at {{job.organisation.name[lang]}}
+### {{job.position}} at {{job.organisation.name}}
 {{job.from_date}} - {% if job.current %}Present{% else %}{{job.to_date}}{% endif %}
-{% for bullet in job.bullets %}
-- {{bullet[lang]}}
-{% endfor %}
+{% for bullet in job.bullets %}- {{bullet}}{% endfor %}
 
 {% if job.technologies %}
 Key skills: {{job.technologies | join(", ")}}
@@ -26,6 +30,6 @@ Key skills: {{job.technologies | join(", ")}}
 ## Education
 
 {% for education in data.education|reverse %}
-### {{education.university[lang]}} / {{education.faculty[lang]}}
-{{education.speciality[lang]}}
+### {{education.university}} / {{education.faculty}}
+{{education.speciality}}
 {% endfor %}

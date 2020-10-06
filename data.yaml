@@ -5,11 +5,14 @@ personal:
   surname:
     ru: Сулим
     en: Sulim
+
+contacts:
   phone: +7-912-66-123-16
   email: kirillsulim@gmail.com
   github: kirillsulim
   site: http://su0.io
   skype: kirillsulim
+  telegram: kirillsulim
 
 education:
 - from_date: "2007-09-01"
