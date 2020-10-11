@@ -59,7 +59,7 @@ class Runner:
         # self._upload_to_gdrive()
         # self._upload_to_hh(data)
         rendered_md = self._render_md(data)
-        self._commit_to_github(rendered_md)
+        # self._commit_to_github(rendered_md)
 
         return 0
 
