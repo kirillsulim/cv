@@ -184,7 +184,11 @@ def render_pdf(debug: bool, data_file: Path, job_title: str, langs: str, profile
             out_dir = build_dir / "pdf"
             out_dir.mkdir(exist_ok=True, parents=True)
             out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{CV_TRANSLATION[lang]}.pdf"
-            doc.generate_pdf(str(out_file)[:-4], clean=not debug, clean_tex=not debug)
+
+            command = ["docker", "run", "-it", "--rm", "--user", f"{os.getuid()}:{os.getgid()}", "-v", f"{out_dir}:{out_dir}",
+                       "-w", f"{out_dir}", "thomasweise/docker-texlive-full", "/usr/bin/pdflatex"]
+
+            doc.generate_pdf(str(out_file)[:-4], clean=not debug, clean_tex=not debug, compiler=command[0], compiler_args=command[1:])
 
             artifacts.setdefault("pdf", []).append(out_file)
             artifacts.setdefault(f"pdf_{lang}", []).append(out_file)
