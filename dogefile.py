@@ -35,7 +35,8 @@ make_mode()
 
 
 PROFILES_DICT = {
-    "md_for_github": ["exclude_phone"]
+    "md_for_github": ["exclude_phone"],
+    "pdf": [],
 }
 
 
