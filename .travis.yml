@@ -11,3 +11,6 @@ script:
   - doge render_md --langs en --profiles md_for_github
   - doge commit_md_to_github --langs en --profiles md_for_github
   - doge release_pdf --profiles pdf
+branches:
+  only:
+  - master
