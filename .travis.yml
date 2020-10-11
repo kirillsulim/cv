@@ -5,6 +5,7 @@ services:
   - docker
 install:
   - pip install -r requirements.txt
+  - docker pull thomasweise/docker-texlive-full
 script:
   - doge render_pdf --profiles pdf
   - doge render_md --langs en --profiles md_for_github
