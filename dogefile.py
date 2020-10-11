@@ -193,7 +193,7 @@ def render_pdf(debug: bool, data_file: Path, job_title: str, langs: str, profile
 
 
 @task(depends=["render_md"])
-def commit_to_github_kirillsulim(debug, md_en):
+def commit_md_to_github(debug, md_en):
     if len(md_en) != 1:
         raise Exception(f"Incorrect artifact list md_en {md_en}")
 

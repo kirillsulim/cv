@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.8"
+install:
+  - pip install -r requirements.txt
+script:
+  - doge render_pdf --profiles pdf
+  - doge render_md --langs en --profiles md_for_github
+  - doge commit_md_to_github --langs en --profiles md_for_github
+  - doge release_pdf --profiles pdf
