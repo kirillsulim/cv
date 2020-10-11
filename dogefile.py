@@ -35,6 +35,7 @@ def parse_profiles(value: str):
 
 
 add_parameter("data_file", parser=Path, default=Path("./data.yaml").resolve())
+add_parameter("job_title", default="Java developer")
 add_parameter("lang", default="en")
 add_parameter("profiles", parser=parse_profiles, default=[])
 add_parameter("debug", parser=bool, default=False)
@@ -54,12 +55,12 @@ CV_TRANSLATION = {
 
 
 @task
-def render_md(data_file: Path, lang: str, profiles: List[str]):
+def render_md(data_file: Path, job_title: str, lang: str, profiles: List[str]):
     data = get_data(data_file, lang, set(profiles))
 
     env = Environment()
     template = env.from_string(Path("./resources/md/template.md").read_text())
-    rendered = template.render(data=data, lang=lang, job_title="Java developer")
+    rendered = template.render(data=data, lang=lang, job_title=job_title)
 
     md_dir = build_dir / "md"
     md_dir.mkdir(exist_ok=True, parents=True)
@@ -69,8 +70,87 @@ def render_md(data_file: Path, lang: str, profiles: List[str]):
     return 0, {f"md_{lang}": [md_rendered]}
 
 
+@task
+def render_html(data_file: Path, job_title: str, lang: str, profiles: List[str]):
+    data = get_data(data_file, lang, set(profiles))
+
+    env = Environment()
+    template = env.from_string(Path("./resources/html/index.html").read_text())
+    rendered = template.render(data=data, lang=lang, job_title=job_title)
+
+    html_dir = build_dir / "html" / lang
+    html_dir.mkdir(exist_ok=True, parents=True)
+    copy(Path("./resources/html/style.css"), html_dir / "style.css")
+    copy(Path("./resources/html/sulim.jpg"), html_dir / "sulim.jpg")
+
+    html_rendered = html_dir / "index.html"
+    html_rendered.write_text(rendered)
+
+    return 0, {f"html_{lang}": [html_dir]}
+
+
+@task
+def render_pdf(debug: bool, data_file: Path, job_title: str, lang: str, profiles: List[str]):
+    data = get_data(data_file, lang, set(profiles))
+
+    doc = Document(
+        'basic',
+        fontenc=["T2A", "T1"],
+    )
+    doc.packages.add(Package("babel", options=["main=russian", "english"]))
+    doc.packages.add(Package("cmap"))
+    doc.packages.add(Package("hyperref"))
+    doc.packages.add(Package("erewhon"))
+
+    doc.append(HugeText(bold(f"{data.personal.name} {data.personal.surname}")))
+    doc.append(NewLine())
+    doc.append(LargeText(job_title))
+    doc.append(NewLine())
+    doc.append(NewLine())
+
+    doc.append(f"Email: ")
+    doc.append(Command("href", [f"mailto:{data.contacts.email}", f"{data.contacts.email}"]))
+    doc.append(NewLine())
+    doc.append(f"Phone: {data.contacts.phone}")
+    doc.append(NewLine())
+    doc.append(f"Site: ")
+    doc.append(Command("href", [f"{data.contacts.site}", f"{data.contacts.site}"]))
+    doc.append(NewLine())
+    doc.append(f"Github: ")
+    doc.append(Command("href", [f"https://github.com/{data.contacts.github}", f"{data.contacts.github}"]))
+    doc.append(NewLine())
+
+    with doc.create(Section('Work experience', numbering=False)):
+        for job in reversed(data.work_experience):
+            with doc.create(Subsection(f"{job.position} at {job.organisation.name}", numbering=False)):
+                doc.append(italic(f"{job.from_date} - {'Present' if job.current else job.to_date}"))
+
+                bullets = Itemize()
+                for bullet in job.bullets:
+                    bullets.add_item(f"{bullet}".strip("\n"))
+                doc.append(bullets)
+
+                if job.technologies:
+                    doc.append("Key skills: ")
+                    doc.append(italic(escape_latex(", ".join(job.technologies))))
+
+    with doc.create(Section("Education", numbering=False)):
+        for education in reversed(data.education):
+            with doc.create(Subsection(f"{education.university} - {education.faculty}", numbering=False)):
+                doc.append(italic(f"{education.from_date} - {education.to_date}"))
+                doc.append(NewLine())
+                doc.append(f"{education.speciality}")
+
+    out_dir = build_dir / "pdf"
+    out_dir.mkdir(exist_ok=True, parents=True)
+    out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{CV_TRANSLATION[lang]}"
+    doc.generate_pdf(str(out_file), clean=not debug, clean_tex=not debug)
+
+    return 0, {f"pdf_{lang}": [out_file]}
+
+
 @task(depends=["render_md"])
-def upload_to_github(debug, md_en):
+def commit_to_github_kirillsulim(debug, md_en):
     if len(md_en) != 1:
         raise Exception(f"Incorrect artifact list md_en {md_en}")
 
