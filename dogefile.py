@@ -75,10 +75,12 @@ def clean():
     rmtree(build_dir)
 
 
-@task
+@task(depends=["compile_translations"])
 def render_md(data_file: Path, job_title: str, langs: str, profiles: List[Set[str]]):
     artifacts = {}
     for lang in langs:
+        tr = gettext.translation("messages", localedir="locales", languages=[lang])
+        _ = tr.gettext
         for profile in profiles:
             data = get_data(data_file, lang, profile)
 
@@ -88,7 +90,8 @@ def render_md(data_file: Path, job_title: str, langs: str, profiles: List[Set[st
 
             md_dir = build_dir / "md"
             md_dir.mkdir(exist_ok=True, parents=True)
-            md_rendered = md_dir / f"{data.personal.name}_{data.personal.surname}_{CV_TRANSLATION[lang]}.md"
+            cv_suffix = _("CV")
+            md_rendered = md_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.md"
             md_rendered.write_text(rendered)
 
             artifacts.setdefault("md", []).append(md_rendered)
