@@ -1,0 +1,56 @@
+# English translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-11-19 00:32+0500\n"
+"PO-Revision-Date: 2020-11-19 00:31+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: dogefile.py:150
+msgid "Email: "
+msgstr ""
+
+#: dogefile.py:155
+msgid "Phone: {phone}"
+msgstr ""
+
+#: dogefile.py:168
+msgid "Work experience"
+msgstr ""
+
+#: dogefile.py:170
+msgid "{position} at {organization_name}"
+msgstr ""
+
+#: dogefile.py:171
+msgid "{from_date} - Present"
+msgstr ""
+
+#: dogefile.py:171
+msgid "{from_date} - {to_date}"
+msgstr ""
+
+#: dogefile.py:179
+msgid "Key skills: "
+msgstr ""
+
+#: dogefile.py:183
+msgid "Education"
+msgstr ""
+
+#: dogefile.py:192
+msgid "CV"
+msgstr ""
+

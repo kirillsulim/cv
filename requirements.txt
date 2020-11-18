@@ -8,6 +8,7 @@ cffi==1.14.3
 chardet==3.0.4
 colorlog==4.0.2
 cryptography==3.2
+Babel==2.9.0
 Deprecated==1.2.10
 distlib==0.3.1
 dogebuild==0.3.3

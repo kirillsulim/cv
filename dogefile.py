@@ -1,11 +1,13 @@
 import sys
 import os
+import gettext
 from argparse import ArgumentParser
 from pathlib import Path
 from shutil import copy, rmtree
 from typing import List, Set
 from tempfile import TemporaryDirectory
 from datetime import datetime, timezone
+from subprocess import run
 
 from pylatex import Document, Section, Subsection, Package
 from pylatex.base_classes import Command
@@ -68,12 +70,6 @@ git_user_email = "ksbenderbot@ya.ru"
 git_user_name = "Bender Rodriguez"
 
 
-CV_TRANSLATION = {
-    "en": "CV",
-    "ru": "Резюме",
-}
-
-
 @task
 def clean():
     rmtree(build_dir)
@@ -126,10 +122,12 @@ def render_html(data_file: Path, job_title: str, langs: str, profiles: List[Set[
     return 0, artifacts
 
 
-@task
-def render_pdf(debug: bool, data_file: Path, job_title: str, langs: str, profiles: List[str]):
+@task(depends=["compile_translations"])
+def render_pdf(debug: bool, data_file: Path, job_title: str, langs: List[str], profiles: List[str]):
     artifacts = {}
     for lang in langs:
+        tr = gettext.translation("messages", localedir="locales", languages=[lang])
+        _ = tr.gettext
         for profile in profiles:
             data = get_data(data_file, lang, profile)
 
@@ -148,22 +146,29 @@ def render_pdf(debug: bool, data_file: Path, job_title: str, langs: str, profile
             doc.append(NewLine())
             doc.append(NewLine())
 
-            doc.append(f"Email: ")
-            doc.append(Command("href", [f"mailto:{data.contacts.email}", f"{data.contacts.email}"]))
-            doc.append(NewLine())
-            doc.append(f"Phone: {data.contacts.phone}")
-            doc.append(NewLine())
-            doc.append(f"Site: ")
-            doc.append(Command("href", [f"{data.contacts.site}", f"{data.contacts.site}"]))
-            doc.append(NewLine())
-            doc.append(f"Github: ")
-            doc.append(Command("href", [f"https://github.com/{data.contacts.github}", f"{data.contacts.github}"]))
-            doc.append(NewLine())
+            if data.contacts.email:
+                doc.append(_("Email: "))
+                doc.append(Command("href", [f"mailto:{data.contacts.email}", f"{data.contacts.email}"]))
+                doc.append(NewLine())
 
-            with doc.create(Section('Work experience', numbering=False)):
+            if data.contacts.phone:
+                doc.append(_("Phone: {phone}").format(phone=data.contacts.phone))
+                doc.append(NewLine())
+
+            if data.contacts.site:
+                doc.append(f"Site: ")
+                doc.append(Command("href", [f"{data.contacts.site}", f"{data.contacts.site}"]))
+                doc.append(NewLine())
+
+            if data.contacts.github:
+                doc.append(f"Github: ")
+                doc.append(Command("href", [f"https://github.com/{data.contacts.github}", f"{data.contacts.github}"]))
+                doc.append(NewLine())
+
+            with doc.create(Section(_("Work experience"), numbering=False)):
                 for job in reversed(data.work_experience):
-                    with doc.create(Subsection(f"{job.position} at {job.organisation.name}", numbering=False)):
-                        doc.append(italic(f"{job.from_date} - {'Present' if job.current else job.to_date}"))
+                    with doc.create(Subsection(_("{position} at {organization_name}").format(position=job.position, organization_name=job.organisation.name), numbering=False)):
+                        doc.append(italic(_("{from_date} - Present").format(from_date=job.from_date) if job.current else _("{from_date} - {to_date}").format(from_date=job.from_date, to_date=job.to_date)))
 
                         bullets = Itemize()
                         for bullet in job.bullets:
@@ -171,19 +176,21 @@ def render_pdf(debug: bool, data_file: Path, job_title: str, langs: str, profile
                         doc.append(bullets)
 
                         if job.technologies:
-                            doc.append("Key skills: ")
+                            doc.append(_("Key skills: "))
                             doc.append(italic(escape_latex(", ".join(job.technologies))))
 
-            with doc.create(Section("Education", numbering=False)):
-                for education in reversed(data.education):
-                    with doc.create(Subsection(f"{education.university} - {education.faculty}", numbering=False)):
-                        doc.append(italic(f"{education.from_date} - {education.to_date}"))
-                        doc.append(NewLine())
-                        doc.append(f"{education.speciality}")
+            if data.education:
+                with doc.create(Section(_("Education"), numbering=False)):
+                    for education in reversed(data.education):
+                        with doc.create(Subsection(f"{education.university} - {education.faculty}", numbering=False)):
+                            doc.append(italic(f"{education.from_date} - {education.to_date}"))
+                            doc.append(NewLine())
+                            doc.append(f"{education.speciality}")
 
             out_dir = build_dir / "pdf"
             out_dir.mkdir(exist_ok=True, parents=True)
-            out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{CV_TRANSLATION[lang]}.pdf"
+            cv_suffix = _("CV")
+            out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.pdf"
 
             command = ["docker", "run", "-it", "--rm", "--user", f"{os.getuid()}:{os.getgid()}", "-v", f"{out_dir}:{out_dir}",
                        "-w", f"{out_dir}", "thomasweise/docker-texlive-full", "/usr/bin/pdflatex"]
@@ -248,3 +255,15 @@ def release_pdf(debug: bool, pdf: List[Path]):
         release.upload_asset(path, name=name, label=label, content_type="application/pdf")
 
     release.update_release(release.title, release.body, draft=False)
+
+
+@task
+def compile_translations():
+    run(["pybabel", "compile", "-d", "locales"], check=True)
+
+
+@task
+def update_translations():
+    run(["pybabel", "extract", "-o", "locales/messages.pot", "dogefile.py"], check=True)
+    run(["pybabel", "update", "-i", "locales/messages.pot", "-d", "locales"], check=True)
+
