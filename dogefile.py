@@ -84,7 +84,8 @@ def render_md(data_file: Path, job_title: str, langs: str, profiles: List[Set[st
         for profile in profiles:
             data = get_data(data_file, lang, profile)
 
-            env = Environment()
+            env = Environment(extensions=['jinja2.ext.i18n'])
+            env.install_gettext_translations(tr)
             template = env.from_string(Path("./resources/md/template.md").read_text())
             rendered = template.render(data=data, lang=lang, job_title=job_title)
 
@@ -104,10 +105,13 @@ def render_md(data_file: Path, job_title: str, langs: str, profiles: List[Set[st
 def render_html(data_file: Path, job_title: str, langs: str, profiles: List[Set[str]]):
     artifacts = {}
     for lang in langs:
+        tr = gettext.translation("messages", localedir="locales", languages=[lang])
+        _ = tr.gettext
         for profile in profiles:
             data = get_data(data_file, lang, profile)
 
-            env = Environment()
+            env = Environment(extensions=['jinja2.ext.i18n'])
+            env.install_gettext_translations(tr)
             template = env.from_string(Path("./resources/html/index.html").read_text())
             rendered = template.render(data=data, lang=lang, job_title=job_title)
 
@@ -267,6 +271,6 @@ def compile_translations():
 
 @task
 def update_translations():
-    run(["pybabel", "extract", "-o", "locales/messages.pot", "dogefile.py"], check=True)
+    run(["pybabel", "extract", "-F", "babel-mapping.ini", "-o", "locales/messages.pot", *Path().glob("*.py"), *Path().glob("resources/**/*.md")], check=True)
     run(["pybabel", "update", "-i", "locales/messages.pot", "-d", "locales"], check=True)
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-19 00:32+0500\n"
+"POT-Creation-Date: 2020-11-19 01:52+0500\n"
 "PO-Revision-Date: 2020-11-19 00:31+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,39 +19,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: dogefile.py:150
+#: dogefile.py:94 dogefile.py:199
+msgid "CV"
+msgstr "Резюме"
+
+#: dogefile.py:157
 msgid "Email: "
 msgstr "Email: "
 
-#: dogefile.py:155
+#: dogefile.py:162
 msgid "Phone: {phone}"
 msgstr "Тел: {phone}"
 
-#: dogefile.py:168
+#: dogefile.py:175 resources/md/template.md:16
 msgid "Work experience"
 msgstr "Опыт работы"
 
-#: dogefile.py:170
+#: dogefile.py:177
 msgid "{position} at {organization_name}"
 msgstr "{organization_name} - {position}"
 
-#: dogefile.py:171
+#: dogefile.py:178
 msgid "{from_date} - Present"
 msgstr "{from_date} - Н.В."
 
-#: dogefile.py:171
+#: dogefile.py:178
 msgid "{from_date} - {to_date}"
 msgstr "{from_date} - {to_date}"
 
-#: dogefile.py:179
+#: dogefile.py:186 resources/md/template.md:25
 msgid "Key skills: "
 msgstr "Ключевые навыкик: "
 
-#: dogefile.py:183
+#: dogefile.py:190 resources/md/template.md:30
 msgid "Education"
 msgstr "Образование"
 
-#: dogefile.py:192
-msgid "CV"
-msgstr "Резюме"
+#: resources/md/template.md:4
+#, fuzzy
+msgid "email: "
+msgstr "email: "
+
+#: resources/md/template.md:8
+msgid "site: "
+msgstr "сайт: "
+
+#: resources/md/template.md:12
+msgid "phone: "
+msgstr "тел.: "
+
+#: resources/md/template.md:20
+msgid "at"
+msgstr "в"
+
+#: resources/md/template.md:21
+msgid "Present"
+msgstr "Н.В."
 

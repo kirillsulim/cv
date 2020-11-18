@@ -1,33 +1,33 @@
 # {{data.personal.name}} {{data.personal.surname}}
 
 {% if data.contacts.email %}
-email: [{{data.contacts.email}}](mailto:{{data.contacts.email}})
+{% trans %}email: {% endtrans %}[{{data.contacts.email}}](mailto:{{data.contacts.email}})
 {% endif %}
 
 {% if data.contacts.site %}
-site: [{{data.contacts.site}}]({{data.contacts.site}})
+{% trans %}site: {% endtrans %}[{{data.contacts.site}}]({{data.contacts.site}})
 {% endif %}
 
 {% if data.contacts.phone %}
-phone: {{data.contacts.phone}}
+{% trans %}phone: {% endtrans %}{{data.contacts.phone}}
 {% endif %}
 
 
-## Work Experience
+## {% trans %}Work experience{% endtrans %}
 
 {% for job in data.work_experience|reverse %}
 
-### {{job.position}} at {{job.organisation.name}}
-{{job.from_date}} - {% if job.current %}Present{% else %}{{job.to_date}}{% endif %}
+### {{job.position}} {% trans %}at{% endtrans %} {{job.organisation.name}}
+{{job.from_date}} - {% if job.current %}{% trans %}Present{% endtrans %}{% else %}{{job.to_date}}{% endif %}
 {% for bullet in job.bullets %}- {{bullet}}{% endfor %}
 
 {% if job.technologies %}
-Key skills: {{job.technologies | join(", ")}}
+{% trans %}Key skills: {% endtrans %}{{job.technologies | join(", ")}}
 {% endif %}
 
 {% endfor %}
 
-## Education
+## {% trans %}Education{% endtrans %}
 
 {% for education in data.education|reverse %}
 ### {{education.university}} / {{education.faculty}}
