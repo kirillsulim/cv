@@ -236,7 +236,7 @@ work_experience:
       Compiled a list of the company's problems and possible solutions.
 
 - from_date: "2019-08-29"
-  current: true
+  to_date: "2020-11-30"
   organisation:
     name:
       ru: Яндекс
@@ -271,3 +271,30 @@ work_experience:
   - Sandbox
   - Python
   - Team City
+
+- from_date: "2020-12-01"
+  current: True
+  organisation:
+    name:
+      ru: Яндекс.Маркет
+      en: Yandex Market
+  position:
+    ru: Разработчик
+    en: Developer
+  bullets:
+  - ru: >
+      Проектирование разделения in-memory кэш-сервиса на шарды.
+    en: >
+      Designing of sharding of in-memory cache service.
+  - ru: >
+      Проводил собеседования кандидатов.
+    en: >
+      Conducted developer interviews
+  technologies:
+  - Java 8/11
+  - Spring
+  - Spring Boot
+  - Yt
+  - YQL
+  - Sandbox
+  - Python
