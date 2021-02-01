@@ -199,7 +199,7 @@ def render_pdf(debug: bool, data_file: Path, job_title: str, langs: List[str], p
             cv_suffix = _("CV")
             out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.pdf"
 
-            command = ["docker", "run", "-it", "--rm", "--user", f"{os.getuid()}:{os.getgid()}", "-v", f"{out_dir}:{out_dir}",
+            command = ["docker", "run", "-i", "--rm", "--user", f"{os.getuid()}:{os.getgid()}", "-v", f"{out_dir}:{out_dir}",
                        "-w", f"{out_dir}", "thomasweise/docker-texlive-full", "/usr/bin/pdflatex"]
 
             doc.generate_pdf(str(out_file)[:-4], clean=not debug, clean_tex=not debug, compiler=command[0], compiler_args=command[1:])
