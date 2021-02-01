@@ -21,7 +21,11 @@ jobs:
       - name: Pull docker container
         run: docker pull thomasweise/docker-texlive-full
       - name: Run .pdf
+        env:
+          GITHUB_TOKEN: blablabla
         run: doge render_pdf --profiles pdf
       - name: Run .md
+        env:
+          GITHUB_TOKEN: blablabla
         run: doge render_md --langs en --profiles md_for_github
 
