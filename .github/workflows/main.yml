@@ -12,6 +12,7 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
+      - run: python3 --version
       - uses: actions/checkout@v2
       - name: Install python requirements
         run: pip3 install -r requirements.txt
