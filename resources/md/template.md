@@ -8,6 +8,10 @@
 {% trans %}site: {% endtrans %}[{{data.contacts.site}}]({{data.contacts.site}})
 {% endif %}
 
+{% if data.contacts.telegram %}
+{% trans %}telegram: {% endtrans %}[{{data.contacts.telegram}}](https://t.me/{{data.contacts.telegram}})
+{% endif %}
+
 {% if data.contacts.phone %}
 {% trans %}phone: {% endtrans %}{{data.contacts.phone}}
 {% endif %}
