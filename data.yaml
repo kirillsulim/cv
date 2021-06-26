@@ -294,6 +294,12 @@ work_experience:
       Проведение leetcode-style собеседований.
     en: >
       Conducting leetcode-style developers interview.
+  - profiles:
+    - teamlead
+    ru: >
+      Руководство командой из 3-х человек. Проведение 1-1 встреч.
+    en: >
+      Leading of a team of 3 people. Conducting 1-1 meetings.
   technologies:
   - Java 8/11
   - Spring
