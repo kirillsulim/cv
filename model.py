@@ -7,6 +7,8 @@ from collections.abc import Iterable
 from yaml import load as load_yaml, SafeLoader
 from marshmallow_dataclass import class_schema
 
+from pprint import pprint
+
 
 @dataclass
 class MultilangStr:
@@ -16,13 +18,13 @@ class MultilangStr:
 
 @dataclass
 class ProfiledMultilangStr(MultilangStr):
-    profile: Optional[List[str]] = field(default_factory=list)
+    profiles: Optional[List[str]] = field(default_factory=list)
 
 
 @dataclass
 class ProfiledStr:
     value: str
-    profile: Optional[List[str]] = field(default_factory=list)
+    profiles: Optional[List[str]] = field(default_factory=list)
 
 
 @dataclass
@@ -99,16 +101,16 @@ def _resolve_lang_and_profiled_strings(obj: Any, lang: str, profiles: Set[str]) 
         return obj
     elif isinstance(obj, Iterable):
         return obj.__class__(filter(lambda o: o is not None, map(lambda it: _resolve_lang_and_profiled_strings(it, lang, profiles), obj)))
+    elif isinstance(obj, ProfiledMultilangStr):
+        if not obj.profiles or profiles.intersection(obj.profiles):
+            return getattr(obj, lang)
+        else:
+            return None
     elif isinstance(obj, MultilangStr):
         return getattr(obj, lang)
     elif isinstance(obj, ProfiledStr):
-        if obj.profile is None or obj.profile in profiles:
+        if not obj.profiles or profiles.intersection(obj.profiles):
             return obj.value
-        else:
-            return None
-    elif isinstance(obj, ProfiledMultilangStr):
-        if obj.profile is None or obj.profile in profiles:
-            return getattr(obj, lang)
         else:
             return None
     elif isinstance(obj, Contacts):

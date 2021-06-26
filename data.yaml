@@ -289,7 +289,13 @@ work_experience:
   - ru: >
       Проводил собеседования кандидатов.
     en: >
-      Conducted developer interviews
+      Conducted developer interviews.
+  - profiles:
+    - teamlead
+    ru: >
+      Руководство командой из 3-х человек. Проведение 1-1 встреч.
+    en: >
+      Leading of a team of 3 people. Conducting 1-1 meetings.
   technologies:
   - Java 8/11
   - Spring
