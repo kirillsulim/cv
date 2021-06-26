@@ -163,6 +163,11 @@ def render_pdf(debug: bool, data_file: Path, job_title: str, langs: List[str], p
                 doc.append(_("Phone: {phone}").format(phone=data.contacts.phone))
                 doc.append(NewLine())
 
+            if data.contacts.telegram:
+                doc.append(f"Telegram: ")
+                doc.append(Command("href", [f"https://t.me/{data.contacts.telegram}", f"{data.contacts.telegram}"]))
+                doc.append(NewLine())
+
             if data.contacts.site:
                 doc.append(f"Site: ")
                 doc.append(Command("href", [f"{data.contacts.site}", f"{data.contacts.site}"]))

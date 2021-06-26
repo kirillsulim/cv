@@ -279,17 +279,21 @@ work_experience:
       ru: Яндекс.Маркет
       en: Yandex Market
   position:
-    ru: Разработчик
-    en: Developer
+    ru: Старший Разработчик
+    en: Senior Developer
   bullets:
   - ru: >
       Проектирование разделения in-memory кэш-сервиса на шарды.
     en: >
       Designing of sharding of in-memory cache service.
   - ru: >
-      Проводил собеседования кандидатов.
+      Оценка и декомпозиция проектов.
     en: >
-      Conducted developer interviews.
+      Decomposing and estimating projects.
+  - ru: >
+      Проведение leetcode-style собеседований.
+    en: >
+      Conducting leetcode-style developers interview.
   - profiles:
     - teamlead
     ru: >
