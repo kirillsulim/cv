@@ -291,22 +291,24 @@ work_experience:
     en: >
       Estimated and made decomposition of Orcale to Postres migration of department. A special tool was developed to help to decompose project, update tickets, keep track on statuses of tables and generate progress reports.
   - ru: >
-      Проводил ежедневные встечи команды, 1+1 встречи с подчиненными. Участвовал в отчетных встречах отдела.
+      Руководство командой из 4-х человек. Проводил ежедневные встечи команды, 1+1 встречи с подчиненными. Участвовал в отчетных встречах отдела.
     en: >
-      Conducted daily meetings, 1+1 meetings with subordinates. Taked part in report meetings of department.
+      Leading of a team of 4 people. Conducted daily meetings, 1+1 meetings with subordinates. Taked part in report meetings of department.
   - ru: >
       Проводил leetcode-style собеседования. Проводил финальные собеседования. По результатам финальных собеседований было нанято 4 сотрудника и 5 стажеров.
     en: >
       Conducted leetcode-style developer interviews. Conducted final interviews. 4 developers and 5 interns was hired after final interviews.
-  - ru: >
-      Руководство командой из 4-х человек. Проведение 1-1 встреч.
-    en: >
-      Leading of a team of 4 people. Conducting 1-1 meetings.
   technologies:
   - Java 8/11
   - Spring
   - Spring Boot
+  - Python
+  - Oracle
+  - Postgres
+  - Clickhouse
   - Yt
   - YQL
   - Sandbox
-  - Python
+  - Scrum
+  - Agile
+  - Leetcode inteview
