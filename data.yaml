@@ -283,23 +283,25 @@ work_experience:
     en: Senior Developer
   bullets:
   - ru: >
-      Проектирование разделения in-memory кэш-сервиса на шарды.
+      Спроектировал разделение in-memory кэш-сервиса на шарды.
     en: >
-      Designing of sharding of in-memory cache service.
+      Designed sharding of in-memory cache service.
   - ru: >
-      Оценка и декомпозиция проектов.
+      Оценил и произвел декомпозицию проекта миграции отдела с Oracle на Postgres. Для декомпозиции была разработана служебная программа для отслеживания статуса таблиц, обновления тикетов и построения данных для отчета о прогрессе.
     en: >
-      Decomposing and estimating projects.
+      Estimated and made decomposition of Orcale to Postres migration of department. A special tool was developed to help to decompose project, update tickets, keep track on statuses of tables and generate progress reports.
   - ru: >
-      Проведение leetcode-style собеседований.
+      Проводил ежедневные встечи команды, 1+1 встречи с подчиненными. Участвовал в отчетных встречах отдела.
     en: >
-      Conducting leetcode-style developers interview.
-  - profiles:
-    - teamlead
-    ru: >
-      Руководство командой из 3-х человек. Проведение 1-1 встреч.
+      Conducted daily meetings, 1+1 meetings with subordinates. Taked part in report meetings of department.
+  - ru: >
+      Проводил leetcode-style собеседования. Проводил финальные собеседования. По результатам финальных собеседований было нанято 4 сотрудника и 5 стажеров.
     en: >
-      Leading of a team of 3 people. Conducting 1-1 meetings.
+      Conducted leetcode-style developer interviews. Conducted final interviews. 4 developers and 5 interns was hired after final interviews.
+  - ru: >
+      Руководство командой из 4-х человек. Проведение 1-1 встреч.
+    en: >
+      Leading of a team of 4 people. Conducting 1-1 meetings.
   technologies:
   - Java 8/11
   - Spring
