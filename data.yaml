@@ -273,7 +273,7 @@ work_experience:
   - Team City
 
 - from_date: "2020-12-01"
-  current: True
+  to_date: "2022-01-01"
   organisation:
     name:
       ru: Яндекс.Маркет
@@ -312,3 +312,22 @@ work_experience:
   - Scrum
   - Agile
   - Leetcode inteview
+
+- from_date: "2022-01-01"
+  current: True
+  organisation:
+    name:
+      ru: Яндекс
+      en: Yandex
+  position:
+    ru: Старший Разработчик
+    en: Senior Developer
+  bullets:
+  - ru: >
+      Анализ размера дескрипторов protobuf сообщений
+    en: >
+      Analized size of protobuf messages descriptor
+  technologies:
+  - Python
+  - Protobuf
+  - Go
