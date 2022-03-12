@@ -273,7 +273,7 @@ work_experience:
   - Team City
 
 - from_date: "2020-12-01"
-  current: True
+  from_date: "2021-12-31"
   organisation:
     name:
       ru: Яндекс.Маркет
@@ -308,3 +308,45 @@ work_experience:
   - YQL
   - Sandbox
   - Python
+
+- from_date: "2022-01-01"
+  from_date: "2022-02-11"
+  organisation:
+    name:
+      ru: Яндекс
+      en: Yandex
+  position:
+    ru: Старший Разработчик
+    en: Senior Developer
+  bullets:
+  - ru: >
+      Провел исследование возможности генерации и хранения protobuf дескрипторов.
+    en: >
+      Reseacrh for generation of protobuf descriptors and its storage in database.
+  technologies:
+  - Python
+  - Go
+  - Protobuf
+  - GRPC
+  - Jupyter
+
+- from_date: "2022-02-28"
+  current: True
+  organisation:
+    name:
+      ru: Тинькофф
+      en: Tinkoff
+  position:
+    ru: Ведущий Разработчик
+    en: Lead Developer
+  bullets:
+  - ru: >
+      Проектирование и разработка бэкенда брокера.
+    en: >
+      Designing and developing broker backend.
+  technologies:
+  - Java 17
+  - Spring
+  - Spring Boot
+  - PostgreSQL
+  - Kafka
