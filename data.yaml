@@ -273,7 +273,7 @@ work_experience:
   - Team City
 
 - from_date: "2020-12-01"
-  to_date: "2022-01-01"
+  to_date: "2021-12-31"
   organisation:
     name:
       ru: Яндекс.Маркет
@@ -314,7 +314,7 @@ work_experience:
   - Leetcode inteview
 
 - from_date: "2022-01-01"
-  current: True
+  from_date: "2022-02-11"
   organisation:
     name:
       ru: Яндекс
@@ -324,10 +324,33 @@ work_experience:
     en: Senior Developer
   bullets:
   - ru: >
-      Анализ размера дескрипторов protobuf сообщений
+      Провел исследование возможности генерации и хранения protobuf дескрипторов.
     en: >
-      Analized size of protobuf messages descriptor
+      Reseacrh for generation of protobuf descriptors and its storage in database.
   technologies:
   - Python
-  - Protobuf
   - Go
+  - Protobuf
+  - GRPC
+  - Jupyter
+
+- from_date: "2022-02-28"
+  current: True
+  organisation:
+    name:
+      ru: Тинькофф
+      en: Tinkoff
+  position:
+    ru: Ведущий Разработчик
+    en: Lead Developer
+  bullets:
+  - ru: >
+      Проектирование и разработка бэкенда брокера.
+    en: >
+      Designing and developing broker backend.
+  technologies:
+  - Java 17
+  - Spring
+  - Spring Boot
+  - PostgreSQL
+  - Kafka
