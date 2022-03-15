@@ -314,7 +314,7 @@ work_experience:
   - Leetcode inteview
 
 - from_date: "2022-01-01"
-  from_date: "2022-02-11"
+  to_date: "2022-02-11"
   organisation:
     name:
       ru: Яндекс
