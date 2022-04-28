@@ -354,3 +354,6 @@ work_experience:
   - Spring Boot
   - PostgreSQL
   - Kafka
+  - Protobuf
+  - Open API
+  - Gitlab CI
