@@ -270,6 +270,8 @@ work_experience:
   - YQL
   - Sandbox
   - Python
+  - Protobuf
+  - gRPC
   - Team City
 
 - from_date: "2020-12-01"
@@ -331,7 +333,7 @@ work_experience:
   - Python
   - Go
   - Protobuf
-  - GRPC
+  - gRPC
   - Jupyter
 
 - from_date: "2022-02-28"
@@ -341,13 +343,17 @@ work_experience:
       ru: Тинькофф
       en: Tinkoff
   position:
-    ru: Ведущий Разработчик
-    en: Lead Developer
+    ru: Старший Разработчик
+    en: Senior Developer
   bullets:
   - ru: >
       Проектирование и разработка бэкенда брокера.
     en: >
       Designing and developing broker backend.
+  - ru: >
+      Проведение ежедневных скрамов.
+    en: >
+      Conducted daily SCRUM meetings.
   technologies:
   - Java 17
   - Spring
@@ -355,5 +361,6 @@ work_experience:
   - PostgreSQL
   - Kafka
   - Protobuf
+  - gRPC
   - Open API
   - Gitlab CI
