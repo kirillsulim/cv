@@ -337,7 +337,7 @@ work_experience:
   - Jupyter
 
 - from_date: "2022-02-28"
-  current: True
+  to_date: "2022-09-09"
   organisation:
     name:
       ru: Тинькофф
@@ -364,3 +364,20 @@ work_experience:
   - gRPC
   - Open API
   - Gitlab CI
+
+- from_date: "2022-09-12"
+  current: True
+  organisation:
+    name:
+      ru: ВКонтакте
+      en: VK 
+  position:
+    ru: Старший Разработчик
+    en: Senior Developer
+  bullets:
+  - ru: >
+      Разработка бэкенда видео.
+    en: >
+      Developing a VK video backend.
+  technologies:
+  - Java 17
