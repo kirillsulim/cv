@@ -366,7 +366,7 @@ work_experience:
   - Gitlab CI
 
 - from_date: "2022-09-12"
-  current: True
+  to_date: "2023-05-12"
   organisation:
     name:
       ru: ВКонтакте
@@ -376,8 +376,16 @@ work_experience:
     en: Senior Developer
   bullets:
   - ru: >
-      Разработка бэкенда видео.
+      Обеспечение поставки даных.
     en: >
       Developing a VK video backend.
+  - ru: >
+      Доработки бэкенда VK video для обеспечения передачи данных.
+    en: >
+      Developing a VK video backend for data transfer.
   technologies:
   - Java 17
+  - Ant
+  - Gradle
+  - PHP
+  - JavaScript
