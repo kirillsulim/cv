@@ -7,8 +7,6 @@ from collections.abc import Iterable
 from yaml import load as load_yaml, SafeLoader
 from marshmallow_dataclass import class_schema
 
-from pprint import pprint
-
 
 @dataclass
 class MultilangStr:
