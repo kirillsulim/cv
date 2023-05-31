@@ -24,13 +24,12 @@ msgid "CV"
 msgstr "Резюме"
 
 #: oak/pdf/pdf.py:33
-#, fuzzy
 msgid "Email: "
-msgstr "email"
+msgstr "Email: "
 
 #: oak/pdf/pdf.py:38
 msgid "Phone: {phone}"
-msgstr ": {phone}"
+msgstr "Тел.: {phone}"
 
 #: oak/md/resources/template.md:20 oak/pdf/pdf.py:56
 msgid "Work experience"
@@ -49,9 +48,8 @@ msgid "{from_date} - {to_date}"
 msgstr ""
 
 #: oak/pdf/pdf.py:67
-#, fuzzy
 msgid "Key skills: "
-msgstr "Ключевые навыки"
+msgstr "Ключевые навыки: "
 
 #: oak/md/resources/template.md:34 oak/pdf/pdf.py:71
 msgid "Education"
