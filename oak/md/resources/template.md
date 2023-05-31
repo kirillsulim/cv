@@ -21,7 +21,7 @@
 
 {% for job in data.work_experience|reverse %}
 
-### {{job.position}}{{ gettext("at") }}{{job.organisation.name}}
+### {{job.position}} {{ gettext("at") }} {{job.organisation.name}}
 {{job.from_date}} - {% if job.current %}{{ gettext("Present") }}{% else %}{{job.to_date}}{% endif %}
 {% for bullet in job.bullets %}- {{bullet}}{% endfor %}
 

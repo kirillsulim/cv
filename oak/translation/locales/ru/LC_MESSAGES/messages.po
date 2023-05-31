@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-01 00:24+0500\n"
+"POT-Creation-Date: 2023-06-01 01:38+0500\n"
 "PO-Revision-Date: 2020-11-19 00:31+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: oak/md/md.py:21 oak/pdf/pdf.py:80
+#: oak/md/md.py:20 oak/pdf/pdf.py:80
 msgid "CV"
 msgstr "Резюме"
 

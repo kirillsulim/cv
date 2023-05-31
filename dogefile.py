@@ -72,37 +72,7 @@ def clean():
     rmtree(build_dir)
 
 
-@task
-def render_html(data_file: Path, job_title: str, langs: str, profiles: List[Set[str]]):
-    artifacts = {}
-    for lang in langs:
-        tr = gettext.translation("messages", localedir="locales", languages=[lang])
-        _ = tr.gettext
-        for profile in profiles:
-            data = get_data(data_file, lang, profile)
 
-            env = Environment(extensions=['jinja2.ext.i18n'])
-            env.install_gettext_translations(tr)
-            template = env.from_string(Path("./resources/html/index.html").read_text())
-            rendered = template.render(data=data, lang=lang, job_title=job_title)
-
-            html_dir = build_dir / "html" / lang
-            html_dir.mkdir(exist_ok=True, parents=True)
-            copy(Path("./resources/html/style.css"), html_dir / "style.css")
-            copy(Path("./resources/html/sulim.jpg"), html_dir / "sulim.jpg")
-
-            html_rendered = html_dir / "index.html"
-            html_rendered.write_text(rendered)
-
-            artifacts.setdefault("html", []).append(html_dir)
-            artifacts.setdefault(f"html_{lang}", []).append(html_dir)
-
-    return 0, artifacts
-
-
-
-
-    return 0, artifacts
 
 
 @task(depends=["render_md"])

@@ -95,6 +95,7 @@ def _is_simple_type(obj: Any) -> bool:
 
 
 def _resolve_lang_and_profiled_strings(obj: Any, lang: str, profiles: Set[str]) -> Any:
+    print(profiles)
     if _is_simple_type(obj):
         return obj
     elif isinstance(obj, Iterable):

@@ -1,9 +1,13 @@
+from dataclasses import dataclass
 from pathlib import Path
+from shutil import rmtree
+from typing import FrozenSet
 
 from oak_build import task, run
 
 from oak.md.md import render_md
 from oak.pdf.pdf import render_pdf
+from oak.html.html import render_html
 from oak.model import get_data
 from oak.translation.translation import (
     compile_translations as _compile_translation,
@@ -16,26 +20,40 @@ BUILD_DIR = Path("./build").resolve()
 DATA_FILE = Path("data.yaml").resolve()
 
 
-@task
-def load_data():
-    return {
-        "result": get_data(DATA_FILE, "ru", set())
-    }
+LANGS = [
+    "en",
+    "ru",
+]
+
+
+@dataclass(eq=True, frozen=True)
+class Profile:
+    name: str
+    job_title: str
+    render_profiles: FrozenSet[str]
+
+
+PROFILES = [
+    Profile(
+        name="teamlead",
+        job_title="Team Lead",
+        render_profiles=frozenset([
+            "teamlead",
+        ])
+    ),
+    Profile(
+        name="java_senior",
+        job_title="Senior Java Developer",
+        render_profiles=frozenset([
+            "java_senior",
+        ])
+    ),
+]
 
 
 @task
-def translations():
-    return {lang: get_translations(lang) for lang in ("en", "ru")}
-
-
-@task(depends_on=[load_data, translations])
-def md(load_data_result, translations_ru):
-    render_md(BUILD_DIR, load_data_result, "test-jt", translations_ru)
-
-
-@task(depends_on=[load_data, translations])
-def pdf(load_data_result, translations_ru):
-    render_pdf(BUILD_DIR, load_data_result, "test-jt", translations_ru)
+def clean():
+    rmtree(BUILD_DIR)
 
 
 @task
@@ -46,3 +64,40 @@ def compile_translation():
 @task
 def update_translation():
     _update_translation()
+
+
+@task(depends_on=[compile_translation])
+def translations():
+    return {
+        "result": {lang: get_translations(lang) for lang in ("en", "ru")}
+    }
+
+
+@task
+def load_data():
+    result = {}
+    for lang in LANGS:
+        for profile in PROFILES:
+            result[(lang, profile)] = get_data(DATA_FILE, lang, profile.render_profiles)
+    return {
+        "result": result
+    }
+
+
+@task(depends_on=[load_data, translations])
+def md(load_data_result, translations_result):
+    for (lang, profile), data in load_data_result.items():
+        translations = translations_result[lang]
+        _ = translations.gettext
+
+        render_md(BUILD_DIR / f"{lang}_{profile.name}", data, _(profile.job_title), translations)
+
+
+@task(depends_on=[load_data, translations])
+def pdf(load_data_result, translations_ru):
+    render_pdf(BUILD_DIR, load_data_result, "test-jt", translations_ru)
+
+
+@task(depends_on=[load_data, translations])
+def html(load_data_result, translations_ru):
+    render_html(BUILD_DIR, load_data_result, "test-jt", translations_ru)
