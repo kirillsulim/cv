@@ -6,7 +6,7 @@ from jinja2 import Environment
 from ..model import *
 
 
-def render_md(build_dir: Path, data: Data, job_title: str, lang: str, translations: GNUTranslations) -> Path:
+def render_md(build_dir: Path, data: Data, job_title: str, translations: GNUTranslations) -> Path:
     _ = translations.gettext
 
     env = Environment(extensions=['jinja2.ext.i18n'])
@@ -14,7 +14,7 @@ def render_md(build_dir: Path, data: Data, job_title: str, lang: str, translatio
     env.policies["ext.i18n.trimmed"] = True
 
     template = env.from_string(Path("./oak/md/resources/template.md").read_text())
-    rendered = template.render(data=data, lang=lang, job_title=job_title)
+    rendered = template.render(data=data, job_title=job_title)
 
     md_dir = build_dir / "md"
     md_dir.mkdir(exist_ok=True, parents=True)

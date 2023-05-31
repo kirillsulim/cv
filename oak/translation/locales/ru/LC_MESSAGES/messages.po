@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-01 00:04+0500\n"
+"POT-Creation-Date: 2023-06-01 00:24+0500\n"
 "PO-Revision-Date: 2020-11-19 00:31+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,9 +19,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: oak/md/md.py:21
+#: oak/md/md.py:21 oak/pdf/pdf.py:80
 msgid "CV"
 msgstr "Резюме"
+
+#: oak/pdf/pdf.py:33
+#, fuzzy
+msgid "Email: "
+msgstr "email"
+
+#: oak/pdf/pdf.py:38
+msgid "Phone: {phone}"
+msgstr ": {phone}"
+
+#: oak/md/resources/template.md:20 oak/pdf/pdf.py:56
+msgid "Work experience"
+msgstr "Опыт работы"
+
+#: oak/pdf/pdf.py:58
+msgid "{position} at {organization_name}"
+msgstr "{organization_name}: {position}"
+
+#: oak/pdf/pdf.py:59
+msgid "{from_date} - Present"
+msgstr "{from_date} - Н.В."
+
+#: oak/pdf/pdf.py:59
+msgid "{from_date} - {to_date}"
+msgstr ""
+
+#: oak/pdf/pdf.py:67
+#, fuzzy
+msgid "Key skills: "
+msgstr "Ключевые навыки"
+
+#: oak/md/resources/template.md:34 oak/pdf/pdf.py:71
+msgid "Education"
+msgstr "Образование"
 
 #: oak/md/resources/template.md:4
 msgid "email"
@@ -39,10 +73,6 @@ msgstr "telegram"
 msgid "phone"
 msgstr "тел."
 
-#: oak/md/resources/template.md:20
-msgid "Work experience"
-msgstr "Опыт работы"
-
 #: oak/md/resources/template.md:24
 msgid "at"
 msgstr "в"
@@ -55,6 +85,3 @@ msgstr "Н.В."
 msgid "Key skills"
 msgstr "Ключевые навыки"
 
-#: oak/md/resources/template.md:34
-msgid "Education"
-msgstr "Образование"

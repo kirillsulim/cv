@@ -9,11 +9,7 @@ from tempfile import TemporaryDirectory
 from datetime import datetime, timezone
 from subprocess import run
 
-from pylatex import Document, Section, Subsection, Package
-from pylatex.base_classes import Command
-from pylatex.basic import HugeText, NewLine, LargeText
-from pylatex.utils import italic, bold, escape_latex
-from pylatex.lists import Itemize
+
 
 from jinja2 import Environment
 
@@ -76,32 +72,6 @@ def clean():
     rmtree(build_dir)
 
 
-@task(depends=["compile_translations"])
-def render_md(data_file: Path, job_title: str, langs: str, profiles: List[Set[str]]):
-    artifacts = {}
-    for lang in langs:
-        tr = gettext.translation("messages", localedir="locales", languages=[lang])
-        _ = tr.gettext
-        for profile in profiles:
-            data = get_data(data_file, lang, profile)
-
-            env = Environment(extensions=['jinja2.ext.i18n'])
-            env.install_gettext_translations(tr)
-            template = env.from_string(Path("./resources/md/template.md").read_text())
-            rendered = template.render(data=data, lang=lang, job_title=job_title)
-
-            md_dir = build_dir / "md"
-            md_dir.mkdir(exist_ok=True, parents=True)
-            cv_suffix = _("CV")
-            md_rendered = md_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.md"
-            md_rendered.write_text(rendered)
-
-            artifacts.setdefault("md", []).append(md_rendered)
-            artifacts.setdefault(f"md_{lang}", []).append(md_rendered)
-
-    return 0, artifacts
-
-
 @task
 def render_html(data_file: Path, job_title: str, langs: str, profiles: List[Set[str]]):
     artifacts = {}
@@ -130,88 +100,7 @@ def render_html(data_file: Path, job_title: str, langs: str, profiles: List[Set[
     return 0, artifacts
 
 
-@task(depends=["compile_translations"])
-def render_pdf(debug: bool, data_file: Path, job_title: str, langs: List[str], profiles: List[str]):
-    artifacts = {}
-    for lang in langs:
-        tr = gettext.translation("messages", localedir="locales", languages=[lang])
-        _ = tr.gettext
-        for profile in profiles:
-            data = get_data(data_file, lang, profile)
 
-            doc = Document(
-                'basic',
-                fontenc=["T2A", "T1"],
-            )
-            doc.packages.add(Package("babel", options=["main=russian", "english"]))
-            doc.packages.add(Package("cmap"))
-            doc.packages.add(Package("hyperref"))
-            doc.packages.add(Package("erewhon"))
-
-            doc.append(HugeText(bold(f"{data.personal.name} {data.personal.surname}")))
-            doc.append(NewLine())
-            doc.append(LargeText(job_title))
-            doc.append(NewLine())
-            doc.append(NewLine())
-
-            if data.contacts.email:
-                doc.append(_("Email: "))
-                doc.append(Command("href", [f"mailto:{data.contacts.email}", f"{data.contacts.email}"]))
-                doc.append(NewLine())
-
-            if data.contacts.phone:
-                doc.append(_("Phone: {phone}").format(phone=data.contacts.phone))
-                doc.append(NewLine())
-
-            if data.contacts.telegram:
-                doc.append(f"Telegram: ")
-                doc.append(Command("href", [f"https://t.me/{data.contacts.telegram}", f"{data.contacts.telegram}"]))
-                doc.append(NewLine())
-
-            if data.contacts.site:
-                doc.append(f"Site: ")
-                doc.append(Command("href", [f"{data.contacts.site}", f"{data.contacts.site}"]))
-                doc.append(NewLine())
-
-            if data.contacts.github:
-                doc.append(f"Github: ")
-                doc.append(Command("href", [f"https://github.com/{data.contacts.github}", f"{data.contacts.github}"]))
-                doc.append(NewLine())
-
-            with doc.create(Section(_("Work experience"), numbering=False)):
-                for job in reversed(data.work_experience):
-                    with doc.create(Subsection(_("{position} at {organization_name}").format(position=job.position, organization_name=job.organisation.name), numbering=False)):
-                        doc.append(italic(_("{from_date} - Present").format(from_date=job.from_date) if job.current else _("{from_date} - {to_date}").format(from_date=job.from_date, to_date=job.to_date)))
-
-                        bullets = Itemize()
-                        for bullet in job.bullets:
-                            bullets.add_item(f"{bullet}".strip("\n"))
-                        doc.append(bullets)
-
-                        if job.technologies:
-                            doc.append(_("Key skills: "))
-                            doc.append(italic(escape_latex(", ".join(job.technologies))))
-
-            if data.education:
-                with doc.create(Section(_("Education"), numbering=False)):
-                    for education in reversed(data.education):
-                        with doc.create(Subsection(f"{education.university} - {education.faculty}", numbering=False)):
-                            doc.append(italic(f"{education.from_date} - {education.to_date}"))
-                            doc.append(NewLine())
-                            doc.append(f"{education.speciality}")
-
-            out_dir = build_dir / "pdf"
-            out_dir.mkdir(exist_ok=True, parents=True)
-            cv_suffix = _("CV")
-            out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.pdf"
-
-            command = ["docker", "run", "-i", "--rm", "--user", f"{os.getuid()}:{os.getgid()}", "-v", f"{out_dir}:{out_dir}",
-                       "-w", f"{out_dir}", "thomasweise/docker-texlive-full", "/usr/bin/pdflatex"]
-
-            doc.generate_pdf(str(out_file)[:-4], clean=not debug, clean_tex=not debug, compiler=command[0], compiler_args=command[1:])
-
-            artifacts.setdefault("pdf", []).append(out_file)
-            artifacts.setdefault(f"pdf_{lang}", []).append(out_file)
 
     return 0, artifacts
 
@@ -268,15 +157,3 @@ def release_pdf(debug: bool, pdf: List[Path]):
         release.upload_asset(path, name=name, label=label, content_type="application/pdf")
 
     release.update_release(release.title, release.body, draft=False)
-
-
-@task
-def compile_translations():
-    run(["pybabel", "compile", "-d", "locales"], check=True)
-
-
-@task
-def update_translations():
-    run(["pybabel", "extract", "-F", "babel-mapping.ini", "-o", "locales/messages.pot", *Path().glob("*.py"), *Path().glob("resources/**/*.md")], check=True)
-    run(["pybabel", "update", "-i", "locales/messages.pot", "-d", "locales"], check=True)
-
