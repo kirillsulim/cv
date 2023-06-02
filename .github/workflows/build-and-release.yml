@@ -25,4 +25,4 @@ jobs:
       - name: Commit CV.md to kirillsulim/kirillsulim
         env:
           GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
-        run: oak release-en-md
+        run: oak commit-en-md
