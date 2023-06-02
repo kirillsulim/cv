@@ -12,11 +12,6 @@
 {{ gettext("telegram") }}: [{{data.contacts.telegram}}](https://t.me/{{data.contacts.telegram}})
 {% endif %}
 
-{% if data.contacts.phone %}
-{{ gettext("phone") }}: {{data.contacts.phone}}
-{% endif %}
-
-
 ## {{ gettext("Work experience") }}
 
 {% for job in data.work_experience|reverse %}

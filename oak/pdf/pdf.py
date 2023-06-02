@@ -78,7 +78,8 @@ def render_pdf(build_dir: Path, data: Data, job_title: str, translations: GNUTra
     out_dir = build_dir / "pdf"
     out_dir.mkdir(exist_ok=True, parents=True)
     cv_suffix = _("CV")
-    out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.pdf"
+    job_title = job_title.replace(" ", "_")
+    out_file = out_dir / f"{data.personal.name}_{data.personal.surname}_{job_title}_{cv_suffix}.pdf"
 
     command = ["docker", "run", "-i", "--rm", "--user", f"{os.getuid()}:{os.getgid()}", "-v", f"{out_dir}:{out_dir}",
                "-w", f"{out_dir}", "thomasweise/docker-texlive-full", "/usr/bin/pdflatex"]

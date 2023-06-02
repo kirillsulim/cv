@@ -16,9 +16,11 @@ def render_md(build_dir: Path, data: Data, job_title: str, translations: GNUTran
     template = env.from_string(Path("./oak/md/resources/template.md").read_text())
     rendered = template.render(data=data, job_title=job_title, lang=lang)
 
-    build_dir.mkdir(exist_ok=True, parents=True)
+    out_dir = build_dir / "md"
+    out_dir.mkdir(exist_ok=True, parents=True)
     cv_suffix = _("CV")
-    md_rendered = build_dir / f"{data.personal.name}_{data.personal.surname}_{cv_suffix}.md"
+    job_title = job_title.replace(" ", "_")
+    md_rendered = out_dir / f"{data.personal.name}_{data.personal.surname}_{job_title}_{cv_suffix}.md"
     md_rendered.write_text(rendered)
 
     return md_rendered
