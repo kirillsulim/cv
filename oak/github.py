@@ -44,14 +44,13 @@ def commit_md_to_github(md_file: Path, git_user_info: GitUserInfo, robot_credent
         repo.git.add(".")
 
         if repo.is_dirty():
-            repo.git.commit("Automatic CV update")
+            repo.git.commit("-m", "Automatic CV update")
             repo.git.push()
 
 
 def release_pdf(pdf: List[Path], robot_credentials: GithubUserCredentials):
     if len(pdf) == 0:
         raise Exception("No artifacts to release")
-
     g = Github(robot_credentials.user, robot_credentials.token)
     cv_repo = g.get_repo(CV_REPO)
 
