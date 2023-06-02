@@ -21,8 +21,4 @@ jobs:
       - name: Run .pdf
         env:
           GITHUB_TOKEN: fake-token
-        run: doge render_pdf --profiles pdf
-      - name: Run .md
-        env:
-          GITHUB_TOKEN: fake-token
-        run: doge render_md --langs en --profiles md_for_github
+        run: oak md pdf

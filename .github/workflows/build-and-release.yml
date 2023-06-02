@@ -18,19 +18,11 @@ jobs:
         run: pip3 install -r requirements.txt
       - name: Pull docker container
         run: docker pull thomasweise/docker-texlive-full
-      - name: Run .pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
-        run: doge render_pdf --profiles pdf
-      - name: Run .md
-        env:
-          GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
-        run: doge render_md --langs en --profiles md_for_github
-      - name: Commit CV.md to kirillsulim/kirillsulim
-        env:
-          GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
-        run: doge commit_md_to_github --langs en --profiles md_for_github
       - name: Release .pdf
         env:
           GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
-        run: doge release_pdf --profiles pdf
+        run: oak release-pdf
+      - name: Commit CV.md to kirillsulim/kirillsulim
+        env:
+          GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
+        run: oak release-en-md
