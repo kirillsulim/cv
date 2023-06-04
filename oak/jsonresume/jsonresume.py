@@ -1,7 +1,7 @@
 from gettext import GNUTranslations
 from pathlib import Path
-from json import dumps
 
+from marshmallow import Schema, post_dump
 from marshmallow_dataclass import class_schema
 
 from oak.jsonresume.converter import convert
@@ -9,7 +9,28 @@ from oak.jsonresume.model import JsonResume
 from oak.model import Data
 
 
-JsonResumeSchema = class_schema(JsonResume)
+class BaseSchema(Schema):
+    SKIP_VALUES = [
+        lambda v: v is None,
+    ]
+
+    @post_dump
+    def remove_skip_values(self, data, **kwargs):
+        print(data)
+        return {
+            key: value for key, value in data.items()
+            if not any([l(value) for l in self.SKIP_VALUES])
+        }
+
+
+JsonResumeSchema = class_schema(JsonResume, BaseSchema)
+
+
+def remove_skip_values(self, data):
+    return {
+        key: value for key, value in data.items()
+        if value is not None
+    }
 
 
 def render_json(build_dir: Path, data: Data, job_title: str, translations: GNUTranslations) -> Path:

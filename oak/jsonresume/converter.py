@@ -59,6 +59,6 @@ def _convert_work(source: yaml_model.WorkExperience) -> json_model.Work:
 def convert(source: yaml_model.Data, job_title: str):
     return json_model.JsonResume(
         basics=_extract_basics(source, job_title),
-        work=list(map(_convert_work, source.work_experience)),
-        education=list(map(_convert_education, source.education))
+        work=list(reversed(list(map(_convert_work, source.work_experience)))),
+        education=list(reversed(list(map(_convert_education, source.education)))),
     )
