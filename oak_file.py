@@ -5,7 +5,7 @@ from pathlib import Path
 from shutil import rmtree
 from typing import FrozenSet
 
-from oak_build import task, run
+from oak_build import task
 
 from oak.github import (
     commit_md_to_github,
@@ -16,6 +16,7 @@ from oak.github import (
 from oak.md.md import render_md
 from oak.pdf.pdf import render_pdf
 from oak.html.html import render_html
+from oak.jsonresume.jsonresume import render_json
 from oak.model import get_data
 from oak.translation.translation import (
     compile_translations as _compile_translation,
@@ -26,16 +27,6 @@ from oak.translation.translation import (
 
 BUILD_DIR = Path("./build").resolve()
 DATA_FILE = Path("data.yaml").resolve()
-
-GITHUB_CREDENTIALS = GithubUserCredentials(
-    user="ksbenderbot",
-    token=os.environ["GITHUB_TOKEN"],
-)
-GIT_USER = GitUserInfo(
-    name="Bender Rodriguez",
-    email="ksbenderbot@ya.ru",
-)
-
 
 LANGS = [
     "en",
@@ -71,6 +62,26 @@ PROFILES = [
 @task
 def clean():
     rmtree(BUILD_DIR)
+
+
+@task
+def github_credentials():
+    return {
+        "result": GithubUserCredentials(
+            user="ksbenderbot",
+            token=os.environ["GITHUB_TOKEN"],
+        )
+    }
+
+
+@task
+def git_user():
+    return {
+        "result": GitUserInfo(
+            name="Bender Rodriguez",
+            email="ksbenderbot@ya.ru",
+        )
+    }
 
 
 @task
@@ -133,11 +144,26 @@ def html(load_data_result, translations_ru):
     render_html(BUILD_DIR, load_data_result, "test-jt", translations_ru)
 
 
-@task(depends_on=[md])
-def commit_en_md(md_en_java_senior):
-    commit_md_to_github(md_en_java_senior, GIT_USER, GITHUB_CREDENTIALS)
+@task(depends_on=[load_data, translations])
+def jsonresume(load_data_result, translations_result):
+    result = {}
+    for (lang, profile), data in load_data_result.items():
+        translations = translations_result[lang]
+        _ = translations.gettext
+
+        json_type = f"{lang}_{profile.name}"
+        result[json_type] = render_json(BUILD_DIR, data, _(profile.job_title), translations)
+
+    return {
+        "result": result,
+    }
 
 
-@task(depends_on=[pdf])
-def release_pdf(pdf_result):
-    _release_pdf(pdf_result, GITHUB_CREDENTIALS)
+@task(depends_on=[md, github_credentials, git_user])
+def commit_en_md(md_en_java_senior, git_user_result, github_credentials_result):
+    commit_md_to_github(md_en_java_senior, git_user_result, github_credentials_result)
+
+
+@task(depends_on=[pdf, github_credentials])
+def release_pdf(pdf_result, github_credentials_result):
+    _release_pdf(pdf_result, github_credentials_result)
