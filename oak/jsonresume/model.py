@@ -33,7 +33,8 @@ class Basics:
 
 @dataclass
 class Work:
-    name: str  # Company
+    name: str  # Some templates wants name as a company name
+    company: str  # Most of the templates wants company as company name
     position: str
     url: Optional[str]
     startDate: date

@@ -47,6 +47,7 @@ def _convert_education(source: yaml_model.Education) -> json_model.Education:
 def _convert_work(source: yaml_model.WorkExperience) -> json_model.Work:
     return json_model.Work(
         name=source.organisation.name,
+        company=source.organisation.name,
         position=source.position,
         url=None,
         startDate=source.from_date,

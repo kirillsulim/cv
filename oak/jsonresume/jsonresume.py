@@ -10,16 +10,18 @@ from oak.model import Data
 
 
 class BaseSchema(Schema):
+    class Meta:
+        ordered=True
+
     SKIP_VALUES = [
         lambda v: v is None,
     ]
 
     @post_dump
     def remove_skip_values(self, data, **kwargs):
-        print(data)
         return {
             key: value for key, value in data.items()
-            if not any([l(value) for l in self.SKIP_VALUES])
+            if not any([predicate(value) for predicate in self.SKIP_VALUES])
         }
 
 
