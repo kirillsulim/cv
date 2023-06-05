@@ -1,3 +1,5 @@
+from typing import Optional
+
 import oak.model as yaml_model
 import oak.jsonresume.model as json_model
 
@@ -31,12 +33,28 @@ def _extract_basics(source: yaml_model.Data, job_title: str) -> json_model.Basic
     )
 
 
+def _extract_degree(value: str) -> Optional[str]:
+    if value.lower().startswith("msc "):
+        return "Master of Science"
+    elif value.lower().startswith("bsc "):
+        return "Bachelor of Science"
+    else:
+        return None
+
+
 def _convert_education(source: yaml_model.Education) -> json_model.Education:
+    institution = f"{source.university} {source.faculty}"
+    degree = _extract_degree(source.speciality)
+    if degree:
+        area = source.speciality.split(" ", maxsplit=1)[1]
+    else:
+        area = source.speciality
+
     return json_model.Education(
-        institution=source.university,
+        institution=institution,
         url=None,
-        area=source.faculty,
-        studyType=source.speciality,
+        area=area,
+        studyType=degree,
         startDate=source.from_date,
         endDate=source.to_date,
         score=None,

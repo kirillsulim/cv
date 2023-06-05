@@ -21,4 +21,4 @@ jobs:
       - name: Run .pdf
         env:
           GITHUB_TOKEN: fake-token
-        run: oak md pdf
+        run: oak md pdf jsonresume

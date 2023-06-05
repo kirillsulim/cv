@@ -26,3 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KSBENDERBOT_GITHUB_TOKEN }}
         run: oak commit-en-md
+      - name: Push jsonresume to gists
+        env:
+          GIST_TOKEN: ${{ secrets.KIRILLSULIM_GIST_TOKEN }}
+        run: oak push-jsonresume-gist
