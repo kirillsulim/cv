@@ -2,7 +2,7 @@ import os
 
 from dataclasses import dataclass
 from pathlib import Path
-from shutil import rmtree
+from shutil import rmtree, copy
 from typing import FrozenSet
 
 from oak_build import task
@@ -10,6 +10,7 @@ from oak_build import task
 from oak.github import (
     commit_md_to_github,
     release_pdf as _release_pdf,
+    push_gist,
     GitUserInfo,
     GithubUserCredentials
 )
@@ -70,6 +71,16 @@ def github_credentials():
         "result": GithubUserCredentials(
             user="ksbenderbot",
             token=os.environ["GITHUB_TOKEN"],
+        )
+    }
+
+
+@task()
+def gist_credentials():
+    return {
+        "result": GithubUserCredentials(
+            user="kirillsulim",
+            token=os.environ["GIST_TOKEN"],
         )
     }
 
@@ -167,3 +178,10 @@ def commit_en_md(md_en_java_senior, git_user_result, github_credentials_result):
 @task(depends_on=[pdf, github_credentials])
 def release_pdf(pdf_result, github_credentials_result):
     _release_pdf(pdf_result, github_credentials_result)
+
+
+@task(depends_on=[jsonresume, gist_credentials])
+def push_jsonresume_gist(jsonresume_result, gist_credentials_result):
+    resume_file = jsonresume_result["en_java_senior"]
+
+    push_gist(resume_file, "522c594d695740bc8bd0e97160305bab", gist_credentials_result)

@@ -4,9 +4,11 @@ from pathlib import Path
 from shutil import copy
 from tempfile import TemporaryDirectory
 from typing import List
+from json import dumps
 
 from git import Repo
 from github import Github, UnknownObjectException
+from github.InputFileContent import InputFileContent
 from slugify import slugify
 
 
@@ -29,7 +31,7 @@ CV_REPO = "kirillsulim/cv"
 def commit_md_to_github(md_file: Path, git_user_info: GitUserInfo, robot_credentials: GithubUserCredentials):
     with TemporaryDirectory() as tmp_dir:
         repo = Repo.clone_from(
-            f"https://{robot_credentials.user}:{robot_credentials.token}@github.com/{INFO_PAGE_REPO}", \
+            f"https://{robot_credentials.user}:{robot_credentials.token}@github.com/{INFO_PAGE_REPO}",
             tmp_dir,
             depth=1
         )
@@ -72,3 +74,16 @@ def release_pdf(pdf: List[Path], robot_credentials: GithubUserCredentials):
         release.upload_asset(path, name=name, label=label, content_type="application/pdf")
 
     release.update_release(release.title, release.body, draft=False)
+
+
+def push_gist(file: Path, gist_id: str, credentials: GithubUserCredentials):
+    g = Github(credentials.user, credentials.token)
+    gist = g.get_gist(gist_id)
+    gist.edit(
+        description="Update",
+        files={
+            "resume.json": InputFileContent(
+                content=file.read_text()
+            )
+        }
+    )
