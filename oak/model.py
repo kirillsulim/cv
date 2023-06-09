@@ -51,6 +51,7 @@ class Education:
     university: Union[str, MultilangStr]
     faculty: Union[str, MultilangStr]
     speciality: Union[str, MultilangStr]
+    degree: Union[str, MultilangStr]
     from_date: Optional[date] = None
     to_date: Optional[date] = None
 
@@ -58,6 +59,7 @@ class Education:
 @dataclass
 class Organisation:
     name: Union[str, MultilangStr]
+    url: Optional[str] = None
 
 
 @dataclass
@@ -66,9 +68,11 @@ class WorkExperience:
     position: Union[str, MultilangStr]
     bullets: List[Union[str, ProfiledMultilangStr]] = field(default_factory=list)
     technologies: List[Union[str, ProfiledStr]] = field(default_factory=list)
+    summary: Optional[Union[str, MultilangStr]] = None
     from_date: Optional[date] = None
     to_date: Optional[date] = None
     current: bool = False
+    profiles: Optional[List[str]] = field(default_factory=list)
 
 
 @dataclass

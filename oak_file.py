@@ -15,7 +15,7 @@ from oak.github import (
     GithubUserCredentials
 )
 from oak.md.md import render_md
-from oak.pdf.pdf import render_pdf
+from oak.pdf.pdf import render_pdf, render_modern_cv
 from oak.html.html import render_html
 from oak.jsonresume.jsonresume import render_json
 from oak.model import get_data
@@ -143,7 +143,7 @@ def pdf(load_data_result, translations_result):
         translations = translations_result[lang]
         _ = translations.gettext
 
-        result.append(render_pdf(BUILD_DIR, data, _(profile.job_title), translations))
+        result.append(render_modern_cv(BUILD_DIR, data, _(profile.job_title), translations))
 
     return {
         "result": result,

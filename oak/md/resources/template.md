@@ -30,5 +30,5 @@
 
 {% for education in data.education|reverse %}
 ### {{education.university}} / {{education.faculty}}
-{{education.speciality}}
+{{education.degree}} {{education.speciality}}
 {% endfor %}

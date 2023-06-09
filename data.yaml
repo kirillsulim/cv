@@ -10,9 +10,32 @@ contacts:
   phone: +7-912-66-123-16
   email: kirillsulim@gmail.com
   github: kirillsulim
-  # site: https://su0.io  Do not include until site is up again
+  site: https://kirillsulim.github.io/
   skype: kirillsulim
   telegram: kirillsulim
+
+about_me:
+  text_parts:
+  - ru: Java-разоработчик более чем с 8-ю годами опыта.
+    en: I am senior java developer with 8+ years of experience.
+    profiles:
+    - java_senior
+  - ru: Успешно создавал с нуля и развивал проекты в различных компаниях, среди которых Яндекс и ВКонтакте.
+    en: I've successfully created and developed projects in many companies, including Yandex an VK.
+    profiles:
+      - java_senior
+  - ru: >
+      Моя цель в работе - создание долгосрочного проекта с хорошим качеством кода и инфраструктурой.
+    en: >
+      My main goal in development is to create long-term project with good code quality and infrastructure.
+    profiles:
+      - java_senior
+  - ru: >
+      В свободное время занимаюсь разработкой и поддержкой нескольких небольших open-source проектов на Python, 
+      нацеленных на улучшение процесса разработки ПО.
+    en: >
+      In my free time I'm developing several small open-source development tools written in Python.
+
 
 education:
 - from_date: "2007-09-01"
@@ -25,7 +48,10 @@ education:
     en: Institute of Physics and Technology
   speciality:
     ru: Прикладная математика и физика
-    en: BSc Applied Mathematics and Physics
+    en: Applied Mathematics and Physics
+  degree:
+    ru: Бакалавр
+    en: Bachelor of Science
 - from_date: "2011-07-01"
   to_date: "2013-06-30"
   university:
@@ -37,6 +63,9 @@ education:
   speciality:
     ru: Физика
     en: MSc Physics
+  degree:
+    ru: Магистр
+    en: Master of Science
 
 work_experience:
 - from_date: "2013-12-01"
@@ -48,16 +77,20 @@ work_experience:
   position:
     ru: Специалист
     en: Java developer
+  summary:
+    ru: Участвовал в разработке интернет банка и сервиса knopka.com.
+    en: Participated in the development of the internet bank and the knopka.com service.
   bullets:
   - ru: >
-      Участвовал в разработке интернет банка и сервиса knopka.com.
+      Разрабатывал фронтент и бэкенд части сервисов банка и knopka.com.
     en: >
-      Participated in the development of the internet bank and the knopka.com service.
+      Developed frontend and backend of bank services and knopka.com
   - ru: >
       Спроектировал и разработал C++ сервис, осуществляющий перенос данных из 1С в Oracle базу данных через JSON-API
       банка. Внедрил CI для этого сервиса на базе Jenkins.
     en: >
-      Designed and developed a C++ service that transfers data from 1С to Oracle database through the bank's JSON-API. Implemented CI for this Jenkins based service.
+      Designed and developed a C++ service that transfers data from 1С accounting database to Oracle database through 
+      the bank's JSON-API. Implemented CI for this service in Jenkins.
   technologies:
   - Java 7
   - Java EE
@@ -83,16 +116,19 @@ work_experience:
   position:
     ru: Младший научный сотрудник
     en: Junior Researcher
+  summary:
+    ru: Работал над программой визуализации работы клетки сердца в рамках исследований по научной работе.
+    en: Worked on visualization of mathematical model of heart cell as part of scientific research.
   bullets:
   - ru: >
-      Разработал программу, моделирующей клетку сердца.
+      Разработал программу, моделирующую клетку сердца, на C# с использванием WinForms.
     en: >
-      Developed a program that simulates a heart cell.
+      Developed a program that simulates a heart cell in C# with WinForms.
   - ru: >
       Проводил консультации студентов и аспирантов по вопросам проектирования приложений, настройке инфраструктуры
-      и т. п.
+      и другим вопросам, связанным с программированием.
     en: >
-      Consulting students and postgraduates on application design, infrastructure configuration
+      Consulting students and postgraduates on application design, infrastructure configuration etc.
   technologies:
   - C#
   - WinForms
@@ -107,12 +143,14 @@ work_experience:
   position:
     ru: Java-разработчик
     en: Java developer
-  bullets:
-  - ru: >
-      Участвовал в разработке API для мобильных приложений и партнеров с использованием библиотеки Netty для
-      асинхронной обработки запросов
+  summary:
+    ru: >
+      Участвовал в разработке и проектировании API для мобильных приложений и партнеров. В приложении активно 
+      использовался HTTP клиент с асинхронными запросами на базе библиотеки Netty.
     en: >
-      Participated in the development of API for mobile applications and partners using the Netty library for asynchronous request processing
+      Participated in the development and design of API for mobile applications and partners. API service used an
+      asynchronous HTTP client based on Netty library.
+  bullets:
   - ru: >
       Настроил систему переноса данных между Map-Reduce системами на базе Airflow
     en: >
@@ -149,56 +187,60 @@ work_experience:
   position:
     ru: Инженер-программист
     en: Software engineer
-  bullets:
-  - ru: >
-      Совместно с командой спроектировал и разработал систему передачи метрик и логов приложений на основе Kafka с
-      использованием бинарного протокола
+  summary:
+    ru: >
+      Участвовал в проектировании и разработке системы передачи observability данных (метрики, логи, трассировки) на 
+      основе Kafka с использованием бинарного протокола. Среди конечных потребителей данных Elasticsearch, Cassandra, 
+      Graphite, Sentry.
     en: >
-      Designed and developed a system for transferring metrics and application logs based on Kafka with using a binary protocol
+      Designed and developed a system for transferring observability data (metrics, logs and trace) based on Kafka 
+      with custom binary protocol. We used Kafka Streams and Kafka consumer for data transfer and Zookeeper as a 
+      configuration and metadata storage. Elasticsearch, Cassandra, Graphite and Sentry was among terminal data storage.
+  bullets:
   - ru: >
       Осуществил сбор требований для нескольких компонентов системы и составил внутренне ТЗ на основе собранных
       требований.
     en: >
-      Carried out the collection of requirements for several components of the system and compiled internally the design document based on the collected requirements.
-  - ru: >
-      Среди конечных потребителей данных Elasticsearch, Cassandra, Graphite, Sentry.
-    en: >
-      End consumers of data include Elasticsearch, Cassandra, Graphite, Sentry.
-  - ru: >
-      Перенос данных осуществлялся через Kafka Streams и Kafka Consumer.
-      Хранение метаданных осуществлялось в кластере Zookeeper.
-    en: >
-      Data transfer was carried out through Kafka Streams and Kafka Consumer. The metadata was stored in a Zookeeper cluster.
+      Carried out the collection of requirements for several components of the system and compiled internally the 
+      design document based on the collected requirements.
   - ru: >
       Разработанная система выдерживала максимальную нагрузку в 30 MB/sec (до 30 000 RPS) на одной ноде. Общая нагрузка
       на кластер достигала 100 000 RPS.
     en: >
-      The developed system withstood a maximum load of 30 MB / sec (up to 30,000 RPS) on one node. Total load per cluster reached 100,000 RPS.
+      The developed system withstood a maximum load of 30 MB / sec (up to 30,000 RPS) on one node. 
+      Total load per cluster reached 100,000 RPS.
   - ru: >
       Разработал тестовое задание для стажеров и автоматическую систему его проверки. Система проверки позволила
       избежать ручной проверки соответствия тестовых заданий техническим требованиям.
     en: >
-      Developed a test task for trainees and an automatic system for checking it. The verification system allowed avoid manual checking of compliance of test items with technical requirements.
+      Developed a test task for trainees and an automatic system for checking it. The verification system allowed 
+      to avoid manual checking of compliance of test items with technical requirements.
   - ru: >
       Провел 10 собеседований разработчиков и стажеров. Курировал двух стажеров, ставил им задачи и контролировал
       выполнение. По результатам стажировки, оба стажеры были взяты на постоянную работу.
     en: >
-      Conducted 10 interviews for developers and interns. Supervised two interns, assigned them tasks and supervised performance. As a result of the internship, both interns were hired for permanent jobs.
+      Conducted 10 interviews for developers and interns. Supervised two interns, assigned them tasks and supervised 
+      performance. As a result of the internship, both interns were hired for permanent jobs.
   - ru: >
       Организовал процесс ведения задач в таск-трекере, что обеспечило большую прозрачность по прогрессу задач для
       команды и заказчиков из других отделов.
     en: >
-      Organized the process of managing tasks in the task tracker, which provided greater transparency on the progress of tasks for teams and customers from other departments.
+      Organized the process of managing tasks in the task tracker, which provided greater transparency on the progress 
+      of tasks for teams and customers from other departments.
   - ru: >
       Вел wiki-страницу проекта с информацией о проекте и howto для новых членов команды
     en: >
       Maintained a wiki page of the project with information about the project and howto for new team members
   - ru: >
-      Участвовал в развитии альтернативных стеков в Контуре (Linux, Java), провел секции BrainStorm по идеям новых
-      продуктов и технологий (на основе идей были сформулированы идеи новых продуктов) и по проблемам развития Java
-      внутри компании (на основе идей были обозначены проблемы развития Java-стека и возможные пути их решения).
+      Участвовал в развитии альтернативных стеков в компании (Linux + Java), провел несколько мозговых штурмов по идеям 
+      новых продуктов и технологий (на основе идей были сформулированы идеи новых продуктов) и по проблемам развития 
+      Java внутри компании (на основе идей были обозначены проблемы развития Java-стека внутри компании и возможные 
+      пути их решения).
     en: >
-      Participated in the development of alternative stacks in the Contour (Linux, Java), conducted BrainStorm sections on ideas for new products and technologies (ideas for new products were formulated on the basis of ideas) and on problems of Java development within the company (on the basis of ideas, the problems of the development of the Java stack and possible solutions were identified).
+      Participated in the development of alternative stacks in the company (Linux, Java), conducted BrainStorm sections 
+      on ideas for new products and technologies (ideas for new products were formulated on the basis of ideas) and 
+      on problems of Java development within the company (on the basis of ideas, the problems of the development of 
+      the Java stack and possible solutions were identified).
   technologies:
   - Java 8
   - multithreading
@@ -217,6 +259,8 @@ work_experience:
   position:
     ru: Технический Директор
     en: CTO
+  profiles:
+  - teamlead
   bullets:
   - ru: >
       Разработал систему грейдов QA специалистов.
