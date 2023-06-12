@@ -10,3 +10,6 @@
 {{ gettext("October") }}
 {{ gettext("November") }}
 {{ gettext("December") }}
+
+{{ gettext("Senior Java Developer") }}
+{{ gettext("Team Lead") }}

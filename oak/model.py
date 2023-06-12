@@ -118,6 +118,12 @@ def _resolve_lang_and_profiled_strings(obj: Any, lang: str, profiles: Set[str]) 
     elif isinstance(obj, Contacts):
         return _contacts_preprocessor(obj, profiles)
     elif is_dataclass(obj):
+        if hasattr(obj, "profiles"):
+            if not obj.profiles or profiles.intersection(obj.profiles):
+                pass
+            else:
+                return None
+
         args = {}
         for k, v in obj.__dict__.items():
             args[k] = _resolve_lang_and_profiled_strings(v, lang, profiles)

@@ -161,10 +161,10 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
                 bullets.add_item(bullet.strip("\n"))
             doc.append(bullets)
 
-            doc.append(_("Key skills: "))
-            doc.append(italic(escape_latex(", ".join(job.technologies))))
-            doc.append(NewLine())
-            doc.append(NewLine())
+            if job.technologies:
+                doc.append(_("Key skills: "))
+                doc.append(italic(escape_latex(", ".join(job.technologies))))
+                doc.append(NewLine())
 
     if data.education:
         with doc.create(Section(_("Education"), label="Education")):
@@ -179,7 +179,7 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
                     "",
                 ]))
 
-    out_dir = build_dir / "bla"
+    out_dir = build_dir / "pdf"
     out_dir.mkdir(exist_ok=True, parents=True)
     cv_suffix = _("CV")
     job_title = job_title.replace(" ", "_")

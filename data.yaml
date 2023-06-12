@@ -25,7 +25,7 @@ about_me:
     profiles:
       - java_senior
   - ru: >
-      Моя цель в работе - создание долгосрочного проекта с хорошим качеством кода и инфраструктурой.
+      Моя цель в работе — создание долгосрочного проекта с хорошим качеством кода и инфраструктурой.
     en: >
       My main goal in development is to create long-term project with good code quality and infrastructure.
     profiles:
@@ -259,17 +259,16 @@ work_experience:
   position:
     ru: Технический Директор
     en: CTO
-  profiles:
-  - teamlead
+  summary:
+    ru: >
+      Участвовал в формировании бизнес-процессов компании, связанных с разработкой.
+    en: >
+      Take part in creating development related business-processes of the company.
   bullets:
   - ru: >
       Разработал систему грейдов QA специалистов.
     en: >
       Developed a system of grades for QA specialists.
-  - ru: >
-      Провел 3 собеседования кандидатов на должности разработчиков.
-    en: >
-      Conducted 3 interviews of candidates for developer positions.
   - ru: >
       Разработал регламент и систему оценки проектов, адаптированную под нужды компании.
     en: > 
@@ -278,6 +277,10 @@ work_experience:
       Составил перечень проблем компании и возможные пути их решения.
     en: >
       Compiled a list of the company's problems and possible solutions.
+  - ru: >
+      Проводил собеседования кандидатов на должности разработчиков.
+    en: >
+      Conducted interviews of candidates for developer positions.
 
 - from_date: "2019-08-29"
   to_date: "2020-11-30"
@@ -288,11 +291,12 @@ work_experience:
   position:
     ru: Разработчик
     en: Developer
-  bullets:
-  - ru: >
-      Разработка и поддержка различных компонентов сервиса Яндекс.Путешествия
+  summary:
+    ru: >
+      Разработка и поддержка различных компонентов сервиса Яндекс.Путешествия.
     en: >
-      Development and support of various components of the Yandex.Travel service
+      Development and support of various components of the Yandex.Travel service.
+  bullets:
   - ru: >
       Участие в квартальном планировании
     en: >
@@ -305,7 +309,8 @@ work_experience:
       Реализовал проект по генерации статических страниц городов отелей.
       Для генераци кросс-ссылок использовался алгорим на основе имитации отжига (simulated annealing).
     en: >
-      Implemented a project to generate static pages for cities. A simulated annealing algorithm was used to generate cross-links.
+      Implemented a project to generate static pages for cities. 
+      A simulated annealing algorithm was used to generate cross-links.
   technologies:
   - Java 11
   - Spring
@@ -325,25 +330,40 @@ work_experience:
       ru: Яндекс.Маркет
       en: Yandex Market
   position:
-    ru: Старший Разработчик
-    en: Senior Developer
+    ru: Руководитель группы
+    en: Team Lead
+  summary:
+    ru: >
+      Руководил командой из 5-ти разработчиков и 5-ти стажеров на проекте миграции с Oracle на Postgres 
+      по Agile-методологии.
+    en: >
+      Lead a team of 5 developers and 5 interns on an Oracle to Postgres migration project 
+      according to Agile methodology.
   bullets:
+  - ru: >
+      Настроил процесс Agile-разработки в команде.
+    en: >
+      Set up Agile-development process in team.
+  - ru: >
+      Оценил и произвел декомпозицию проекта миграции отдела с Oracle на Postgres. Для декомпозиции была разработана 
+      служебная программа для отслеживания статуса таблиц, обновления тикетов и построения данных для отчета о прогрессе.
+    en: >
+      Estimated and made decomposition of Orcale to Postres migration of department. A special tool was developed to 
+      help to decompose project, update tickets, keep track on statuses of tables and generate progress reports.
+  - ru: >
+      Проводил ежедневные СКРАМ встечи, встречи 1+1 с подчиненными. Принимал участие в отчетных встречах отдела.
+    en: >
+      Conducted daily SCRUM meetings and 1+1 meetings with subordinates. Took part in reporting meetings of department.
   - ru: >
       Спроектировал разделение in-memory кэш-сервиса на шарды.
     en: >
       Designed sharding of in-memory cache service.
   - ru: >
-      Оценил и произвел декомпозицию проекта миграции отдела с Oracle на Postgres. Для декомпозиции была разработана служебная программа для отслеживания статуса таблиц, обновления тикетов и построения данных для отчета о прогрессе.
+      Проводил собеседования с программированием и финальные собеседования. 
+      По результатам собеседований было нанято 4 сотрудника и 5 стажеров.
     en: >
-      Estimated and made decomposition of Orcale to Postres migration of department. A special tool was developed to help to decompose project, update tickets, keep track on statuses of tables and generate progress reports.
-  - ru: >
-      Руководство командой из 4-х человек. Проводил ежедневные встечи команды, 1+1 встречи с подчиненными. Участвовал в отчетных встречах отдела.
-    en: >
-      Leading of a team of 4 people. Conducted daily meetings, 1+1 meetings with subordinates. Taked part in report meetings of department.
-  - ru: >
-      Проводил leetcode-style собеседования. Проводил финальные собеседования. По результатам финальных собеседований было нанято 4 сотрудника и 5 стажеров.
-    en: >
-      Conducted leetcode-style developer interviews. Conducted final interviews. 4 developers and 5 interns was hired after final interviews.
+      Conducted leetcode-style and final developer interviews. 
+      4 developers and 5 interns was hired after final interviews.
   technologies:
   - Java 8/11
   - Spring
@@ -357,7 +377,7 @@ work_experience:
   - Sandbox
   - Scrum
   - Agile
-  - Leetcode inteview
+  - Leetcode interview
 
 - from_date: "2022-01-01"
   to_date: "2022-02-11"
@@ -365,6 +385,8 @@ work_experience:
     name:
       ru: Яндекс
       en: Yandex
+  profiles:
+    - hidden
   position:
     ru: Старший Разработчик
     en: Senior Developer
@@ -389,15 +411,20 @@ work_experience:
   position:
     ru: Старший Разработчик
     en: Senior Developer
+  summary:
+    ru: >
+      Участвовал в проектировании архитектуры и разработке бэкенда брокера.
+    en: >
+      Designing architecture and developing broker backend.
   bullets:
   - ru: >
-      Проектирование и разработка бэкенда брокера.
+      Проводил ежедневные СКРАМ-встречи и ретро-встречи по итогам спринта.
     en: >
-      Designing and developing broker backend.
+      Conducted daily SCRUM meetings and sprint-retro meetings.
   - ru: >
-      Проведение ежедневных скрамов.
+      Участвовал в разработке системных требований совместно с аналитиком.
     en: >
-      Conducted daily SCRUM meetings.
+      Developed and adjusted system requirements with team system analyst.
   technologies:
   - Java 17
   - Spring
@@ -418,11 +445,12 @@ work_experience:
   position:
     ru: Старший Разработчик
     en: Senior Developer
-  bullets:
-  - ru: >
-      Обеспечение поставки даных.
+  summary:
+    ru: >
+      Участвовал в разработке системы поставки данных о просмотрах пользователей.
     en: >
-      Developing a VK video backend.
+      Take part in development of pipeline with user watched videos data.
+  bullets:
   - ru: >
       Доработки бэкенда VK video для обеспечения передачи данных.
     en: >

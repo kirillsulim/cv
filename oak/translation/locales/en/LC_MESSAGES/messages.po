@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-12 19:15+0500\n"
+"POT-Creation-Date: 2023-06-12 19:23+0500\n"
 "PO-Revision-Date: 2020-11-19 00:31+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.12.1\n"
 
 #: oak/jsonresume/jsonresume.py:48 oak/md/md.py:21 oak/pdf/pdf.py:84
-#: oak/pdf/pdf.py:188
+#: oak/pdf/pdf.py:184
 msgid "CV"
 msgstr ""
 
@@ -47,19 +47,19 @@ msgstr ""
 msgid "{from_date} - {to_date}"
 msgstr ""
 
-#: oak/pdf/pdf.py:71 oak/pdf/pdf.py:168
+#: oak/pdf/pdf.py:71 oak/pdf/pdf.py:164
 msgid "Key skills: "
 msgstr ""
 
-#: oak/md/resources/template.md:29 oak/pdf/pdf.py:75 oak/pdf/pdf.py:174
+#: oak/md/resources/template.md:29 oak/pdf/pdf.py:75 oak/pdf/pdf.py:170
 msgid "Education"
 msgstr ""
 
-#: oak/pdf/pdf.py:149
+#: oak/pdf/pdf.py:145
 msgid "current"
 msgstr ""
 
-#: oak/pdf/pdf.py:152
+#: oak/pdf/pdf.py:148
 msgid "Experience"
 msgstr ""
 
@@ -109,6 +109,14 @@ msgstr ""
 
 #: oak/translation/dictionary.md:12
 msgid "December"
+msgstr ""
+
+#: oak/translation/dictionary.md:14
+msgid "Senior Java Developer"
+msgstr ""
+
+#: oak/translation/dictionary.md:15
+msgid "Team Lead"
 msgstr ""
 
 #: oak/md/resources/template.md:4
