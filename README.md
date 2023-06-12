@@ -12,7 +12,7 @@
 ## How to stop worrying and build pdf
 
 ```sh
-export GITHUB_TOKEN=fake && oak pdf
+oak pdf
 ```
 
 
