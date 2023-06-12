@@ -458,9 +458,17 @@ work_experience:
       Take part in development of pipeline with user watched videos data.
   bullets:
   - ru: >
-      Доработки бэкенда VK video для обеспечения передачи данных.
+      Доработки бэкенда и фронтенда VK video для обеспечения передачи данных.
     en: >
-      Developing a VK video backend for data transfer.
+      Developing a VK video backend and frontend for data transfer.
+  - ru: >
+      Проведение собеседований.
+    en: >
+      Conducted interviews.
+  - ru: >
+      Ведение wiki-раздела для онбординга новых сотрудников.
+    en: >
+      Created wiki section to onboard new employees.
   technologies:
   - Java 17
   - Ant
