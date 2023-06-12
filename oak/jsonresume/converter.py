@@ -56,7 +56,7 @@ def _convert_work(source: yaml_model.WorkExperience) -> json_model.Work:
         url=None,
         startDate=source.from_date,
         endDate=source.to_date,
-        summary=None,
+        summary=source.summary,
         highlights=source.bullets,
     )
 
