@@ -107,10 +107,7 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
     doc.packages.add(Package("inputenc", options=["utf8"]))
     doc.packages.add(Package("cmap"))
     doc.packages.add(Package("erewhon"))
-    doc.packages.add(Package("geometry", options=["scale = 0.75"]))
-    doc.packages.add(Package("parskip", options=["skip=50pt", "indent=0pt"]))
-
-    doc.preamble.append(Command("recomputelengths"))
+    doc.packages.add(Package("geometry", options=["scale=0.85"]))
 
     doc.preamble.append(Command("moderncvstyle", "banking"))
     doc.preamble.append(Command("moderncvcolor", "burgundy"))
@@ -144,34 +141,42 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
             year_to = to_date.year
             month_to = _(to_date.strftime("%B"))
 
-            return f"{month_from} {year_from} -- {month_to} {year_to}"
+            return f"{month_from} {year_from} - {month_to} {year_to}"
         else:
             current = _("current")
-            return f"{month_from} {year_from} -- {current}"
+            return f"{month_from} {year_from} - {current}"
 
     with doc.create(Section(_("Experience"), label="Experience")):
         for job in reversed(data.work_experience):
             # \cventry{year--year}{Job title}{Employer}{City}{}{General description no longer than 1--2 lines.\newline{}%
             doc.append(Command("cventry", [
-                NoEscape(print_interval(job.from_date, job.to_date)),
+                print_interval(job.from_date, job.to_date),
                 job.position,
-                job.organisation.name,
+                Command("parbox", ["11cm", job.organisation.name]),
                 "",
                 "",
-                job.summary if job.summary else "",
+                "",
             ]))
-            doc.append(Command("par"))
 
+            if job.summary:
+                doc.append(escape_latex(job.summary.strip("\n")))
+                doc.append(NewLine())
+
+            doc.append(Command("medskip"))
+            doc.append(_("Main achievements:"))
             bullets = Itemize()
             for bullet in job.bullets:
                 bullets.add_item(bullet.strip("\n"))
             doc.append(bullets)
-            doc.append(Command("par"))
 
             if job.technologies:
+                doc.append(Command("medskip"))
                 doc.append(_("Key skills: "))
                 doc.append(italic(escape_latex(", ".join(job.technologies))))
-                doc.append(Command("par"))
+                doc.append(NewLine())
+                doc.append(NewLine())
+
+            doc.append(Command("bigskip"))
 
     if data.education:
         with doc.create(Section(_("Education"), label="Education")):
@@ -180,12 +185,11 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
                 doc.append(Command("cventry", [
                     NoEscape(f"{education.from_date.year}--{education.to_date.year}"),
                     education.degree,
-                    f"{education.university} {education.faculty}",
+                    Command("parbox", ["12cm", f"{education.university} {education.faculty}"]),
                     "",
                     "",
-                    "",
+                    NoEscape("\\smallskip"),
                 ]))
-                doc.append(Command("par"))
 
     out_dir = build_dir / "pdf"
     out_dir.mkdir(exist_ok=True, parents=True)
