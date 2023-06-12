@@ -104,9 +104,13 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
         fontenc=["T2A", "T1"],
     )
     doc.packages.add(Package("babel", options=["main=russian", "english"]))
+    doc.packages.add(Package("inputenc", options=["utf8"]))
     doc.packages.add(Package("cmap"))
     doc.packages.add(Package("erewhon"))
     doc.packages.add(Package("geometry", options=["scale = 0.75"]))
+    doc.packages.add(Package("parskip", options=["skip=50pt", "indent=0pt"]))
+
+    doc.preamble.append(Command("recomputelengths"))
 
     doc.preamble.append(Command("moderncvstyle", "banking"))
     doc.preamble.append(Command("moderncvcolor", "burgundy"))
@@ -156,15 +160,18 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
                 "",
                 job.summary if job.summary else "",
             ]))
+            doc.append(Command("par"))
+
             bullets = Itemize()
             for bullet in job.bullets:
                 bullets.add_item(bullet.strip("\n"))
             doc.append(bullets)
+            doc.append(Command("par"))
 
             if job.technologies:
                 doc.append(_("Key skills: "))
                 doc.append(italic(escape_latex(", ".join(job.technologies))))
-                doc.append(NewLine())
+                doc.append(Command("par"))
 
     if data.education:
         with doc.create(Section(_("Education"), label="Education")):
@@ -178,6 +185,7 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
                     "",
                     "",
                 ]))
+                doc.append(Command("par"))
 
     out_dir = build_dir / "pdf"
     out_dir.mkdir(exist_ok=True, parents=True)

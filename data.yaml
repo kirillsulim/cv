@@ -198,10 +198,10 @@ work_experience:
       configuration and metadata storage. Elasticsearch, Cassandra, Graphite and Sentry was among terminal data storage.
   bullets:
   - ru: >
-      Осуществил сбор требований для нескольких компонентов системы и составил внутренне ТЗ на основе собранных
-      требований.
+      Осуществил сбор требований для нескольких компонентов системы и составил техническое задание на основе
+      собранных требований.
     en: >
-      Carried out the collection of requirements for several components of the system and compiled internally the 
+      Carried out the collection of requirements for several components of the system and compiled the 
       design document based on the collected requirements.
   - ru: >
       Разработанная система выдерживала максимальную нагрузку в 30 MB/sec (до 30 000 RPS) на одной ноде. Общая нагрузка
