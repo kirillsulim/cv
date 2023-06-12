@@ -5,8 +5,8 @@
 - [Latest CV Senior Java Developer version](https://github.com/kirillsulim/cv/releases/latest/download/kirill-sulim-senior-java-developer-cv.pdf)
 
 ## Русская версия
-- [Актуальное резюме, Тимлид](https://github.com/kirillsulim/cv/releases/latest/download/kirill-sulim-team-lead-reziume.pdf)
-- [Актуальное резюме, Senior Java](https://github.com/kirillsulim/cv/releases/latest/download/kirill-sulim-senior-java-developer-reziume.pdf)
+- [Актуальное резюме, Тимлид](https://github.com/kirillsulim/cv/releases/latest/download/kirill-sulim-rukovoditel-gruppy-reziume.pdf)
+- [Актуальное резюме, Senior Java](https://github.com/kirillsulim/cv/releases/latest/download/kirill-sulim-starshii-java-razrabotchik-reziume.pdf)
 
 
 ## How to stop worrying and build pdf
