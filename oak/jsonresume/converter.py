@@ -27,7 +27,7 @@ def _extract_basics(source: yaml_model.Data, job_title: str) -> json_model.Basic
         image=None,
         phone=source.contacts.phone,
         url=source.contacts.site,
-        summary=None,
+        summary=" ".join(source.about_me.text_parts),
         location=None,
         profiles=profiles,
     )
