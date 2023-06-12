@@ -133,16 +133,12 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
     doc.append(Command("makecvtitle"))
 
     def print_interval(from_date: datetime.date, to_date: Optional[datetime.date]) -> str:
-        month_names = Locale("ru").months['format']['wide']
-        for idx, names in month_names.items():
-            print(idx, names)
-
         year_from = from_date.year
-        month_from = month_names[from_date.month - 1]
+        month_from = _(from_date.strftime("%B"))
 
         if to_date:
             year_to = to_date.year
-            month_to = month_names[to_date.month - 1]
+            month_to = _(to_date.strftime("%B"))
 
             return f"{month_from} {year_from} -- {month_to} {year_to}"
         else:
@@ -195,12 +191,3 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
     doc.generate_pdf(str(out_file)[:-4], clean=not debug, clean_tex=False, compiler=command[0], compiler_args=command[1:])
 
     return out_file
-
-
-if __name__ == '__main__':
-    lc = Locale("ru")
-    month_names = lc.months['format']['wide']
-    dd = datetime.date(year=2022, month=12, day=23)
-    
-    print(format_date(dd, format="MMMM yyyy", locale="ru"))
-    stop = True

@@ -20,6 +20,7 @@ def update_translations():
     translation_sources.append(Path("./oak_file.py"))
     translation_sources.extend(Path().glob("oak/**/*.py"))
     translation_sources.extend(Path().glob("oak/**/*.md"))
+
     translation_sources = [str(p) for p in translation_sources if p is not None]
 
     run(f"pybabel extract -F {BABEL_MAPPING} -o {MESSAGES_POT} {' '.join(translation_sources)}")
