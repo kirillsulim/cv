@@ -18,7 +18,11 @@
 
 ### {{job.position}} {{ gettext("at") }} {{job.organisation.name}}
 {{job.from_date}} - {% if job.current %}{{ gettext("Present") }}{% else %}{{job.to_date}}{% endif %}
-{% if job.summary %}{{job.summary}}{% endif %}
+
+{% if job.summary %}
+{{job.summary}}
+{% endif %}
+
 {% for bullet in job.bullets %}- {{bullet}}{% endfor %}
 
 {% if job.technologies %}
