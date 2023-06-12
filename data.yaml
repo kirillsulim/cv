@@ -24,12 +24,18 @@ about_me:
     en: I've successfully created and developed projects in many companies, including Yandex an VK.
     profiles:
       - java_senior
+  - ru: Руководитель группы с 1 годом опыта руководства и 8-ю годами опыта программирования.
+    en: I am Team Lead with 1 year of leading experience and 8+ years of experience in development.
+    profiles:
+    - teamlead
+  - ru: Успешно набирал команды и отлаживал процессы по SCRUM методологии.
+    en: I've sucessfully hired a team and set up development process according to SCRUM methodology.
+    profiles:
+    - teamlead
   - ru: >
       Моя цель в работе — создание долгосрочного проекта с хорошим качеством кода и инфраструктурой.
     en: >
       My main goal in development is to create long-term project with good code quality and infrastructure.
-    profiles:
-      - java_senior
   - ru: >
       В свободное время занимаюсь разработкой и поддержкой нескольких небольших open-source проектов на Python, 
       нацеленных на улучшение процесса разработки ПО.

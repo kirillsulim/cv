@@ -4,10 +4,8 @@ from gettext import GNUTranslations
 from pathlib import Path
 from typing import Optional
 
-from babel import Locale
-from babel.dates import format_date
 from pylatex import Document, Section, Subsection, Package
-from pylatex.base_classes import Command
+from pylatex.base_classes import Command, Environment
 from pylatex.basic import HugeText, NewLine, LargeText
 from pylatex.utils import italic, bold, escape_latex, NoEscape
 from pylatex.lists import Itemize
@@ -116,7 +114,7 @@ def render_modern_cv(build_dir: Path, data: Data, job_title: str, translations: 
         Command("mbox", data.personal.name),
         Command("mbox", data.personal.surname),
     ]))
-    doc.preamble.append(Command("title", NoEscape(job_title.replace(" ", "~"))))
+    doc.preamble.append(Command("title", Command("mbox", job_title)))
     if data.contacts.phone:
         doc.preamble.append(Command("phone", data.contacts.phone, options=["mobile"]))
     if data.contacts.email:
