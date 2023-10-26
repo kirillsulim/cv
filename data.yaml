@@ -475,3 +475,29 @@ work_experience:
   - Gradle
   - PHP
   - JavaScript
+
+- from_date: "2023-07-05"
+  current: True
+  organisation:
+    name:
+      ru: ООО "Хэдхантер Технологии"
+      en: hh.ru
+  position:
+    ru: Старший Разработчик
+    en: Senior Developer
+  summary:
+    ru: >
+      Проектирование и разработка веб-сервисов hh.ru
+    en: >
+      Architecture and development of web-services of hh.ru
+  bullets:
+  - ru: >
+      Проектирование и разработка интеграции с сервисом Госуслуги (ЕСИА)
+    en: >
+      Architecture and development of Gosuslugi integration
+  technologies:
+  - Java 17
+  - Spring
+  - Hibernate
+  - Maven
+  - Python
