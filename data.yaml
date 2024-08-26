@@ -16,8 +16,8 @@ contacts:
 
 about_me:
   text_parts:
-  - ru: Java-разоработчик более чем с 8-ю годами опыта.
-    en: I am senior java developer with 8+ years of experience.
+  - ru: Java-разоработчик более чем с 10-ю годами опыта.
+    en: I am senior java developer with 10+ years of experience.
     profiles:
     - java_senior
   - ru: Успешно создавал с нуля и развивал проекты в различных компаниях, среди которых Яндекс и ВКонтакте.
@@ -424,7 +424,7 @@ work_experience:
       Designing architecture and developing broker backend.
   bullets:
   - ru: >
-      Проводил ежедневные СКРАМ-встречи и ретро-встречи по итогам спринта.
+      Проводил ежедневные SCRUM-встречи и ретро-встречи по итогам спринта.
     en: >
       Conducted daily SCRUM meetings and sprint-retro meetings.
   - ru: >
@@ -477,7 +477,7 @@ work_experience:
   - JavaScript
 
 - from_date: "2023-07-05"
-  current: True
+  to_date: "2023-12-29"
   organisation:
     name:
       ru: ООО "Хэдхантер Технологии"
@@ -501,3 +501,42 @@ work_experience:
   - Hibernate
   - Maven
   - Python
+
+- from_date: "2024-01-11"
+  current: True
+  organisation:
+    name:
+      ru: ООО "Монета Лабс"
+      en: moneta.ru
+  position:
+    ru: Старший Разработчик
+    en: Senior Developer
+  summary:
+    ru: >
+      Разработка и поддежка сервиса moneta.ru
+    en: >
+      Deveopment and support of moneta.ru
+  bullets:
+  - ru: >
+      Создание гайдлайна схемы взаимодействия сервисов через Kafka
+    en: >
+      Designed a scheme guideline for interaction between services via Kafka
+  - ru: >
+      Проектирование REST интерфейса сервиса в OpenAPI
+    en: >
+      Designed REST interface of service with OpenAPI
+  - ru: >
+      Участие в PCI DSS аудите в качестве специалиста проекта
+    en: >
+      Participated in PCI DSS audit as a project specialist
+  - ru: >
+      Проведение собеседований технических аналитиков
+    en: >
+      Conducted tecnical analysts interview   
+  technologies:
+  - Java 20
+  - Spring
+  - Spring boot
+  - OpenAPI
+  - Oracle
+  - Postgres
