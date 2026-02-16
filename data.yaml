@@ -23,9 +23,9 @@ about_me:
   - ru: Успешно создавал с нуля и развивал проекты в различных компаниях, среди которых Яндекс и ВКонтакте.
     en: I've successfully created and developed projects in many companies, including Yandex an VK.
     profiles:
-      - java_senior
-  - ru: Руководитель группы с 1 годом опыта руководства и 8-ю годами опыта программирования.
-    en: I am Team Lead with 1 year of leading experience and 8+ years of experience in development.
+    - java_senior
+  - ru: Руководитель группы с 3-мя годами опыта на руководящих позициях и 10+ годами опыта программирования.
+    en: I am Team Lead with 3 year of leading experience and 10+ years of experience in development.
     profiles:
     - teamlead
   - ru: Успешно набирал команды и отлаживал процессы по SCRUM методологии.
@@ -509,30 +509,66 @@ work_experience:
       ru: ООО "Монета Лабс"
       en: moneta.ru
   position:
-    ru: Старший Разработчик
-    en: Senior Developer
+    ru: Техлид
+    en: Tech Lead
   summary:
     ru: >
-      Разработка и поддежка сервиса moneta.ru
+      Техническое руководство разработки и поддежки сервиса moneta.ru
     en: >
-      Deveopment and support of moneta.ru
+      Techical leading of deveopment and support of moneta.ru
   bullets:
   - ru: >
-      Создание гайдлайна схемы взаимодействия сервисов через Kafka
+      Архитектура и проектирование систем: Разработал C4-модель платежных сервисов 
+      (уровни Context, Container, частично Components). На её основе сформировал стратегию и 
+      roadmap декомпозиции платежного монолита.
     en: >
-      Designed a scheme guideline for interaction between services via Kafka
+      Architecture & System Design: Developed a C4 model for payment services (Context, Container,
+      and partial Component levels). Based on it, defined the strategy and roadmap for decomposing
+      the payment monolith.
   - ru: >
-      Проектирование REST интерфейса сервиса в OpenAPI
+       Архитектура и проектирование систем: Разработал гайдлайны по Kafka и Protobuf для схем 
+       сообщений с автоматической документацией. Обеспечил на их основе реализацию межкомандного 
+       обмена данными.
     en: >
-      Designed REST interface of service with OpenAPI
+      Architecture & System Design: Established Kafka and Protobuf guidelines for message schemas
+      with auto-generated documentation. Enabled cross-team data exchange based on these standards.
   - ru: >
-      Участие в PCI DSS аудите в качестве специалиста проекта
+      Практики разработки и инструменты: Внедрил Liquibase для версионирования и управления схемами БД.
     en: >
-      Participated in PCI DSS audit as a project specialist
+      Development Practices & Tooling: Implemented Liquibase for database schema versioning and management.
   - ru: >
-      Проведение собеседований технических аналитиков
+      Практики разработки и инструменты: Модернизировал CI: внедрил статический анализ (Checkstyle,
+      PMD, Spotbugs), Testcontainers с Postgres в Docker, перевел релизы на GitFlow.
     en: >
-      Conducted tecnical analysts interview   
+      Development Practices & Tooling: Modernized CI pipeline by integrating static analysis (Checkstyle,
+      PMD, Spotbugs), Testcontainers with Postgres in Docker, and adopting GitFlow for releases.
+  - ru: >
+      Практики разработки и инструменты: Инициировал переход на Nexus для артефактов, заменив Maven
+      Central и локальные папки. Повысил стабильность сборок в CI.
+    en: >
+      Development Practices & Tooling: Initiated migration to Nexus for artifact storage, replacing
+      Maven Central and local folders. Improved CI build stability.
+  - ru: >
+      Управление командой и процессами: Внедрил Definition of Ready и Definition of Done, 
+      инициировал ежеквартальное планирование и ретроспективы.
+    en: >
+      Team & Process Management: Introduced Definition of Ready and Definition of Done, established
+      quarterly planning and retrospectives.
+  - ru: >
+      Управление командой и процессами: Руководил экспериментальным ML-проектом: команда из двух 
+      стажеров (Python ML + Spring Boot для подготовки данных).
+    en: >
+      Team & Process Management: Led an experimental ML project with two interns (Python ML model
+      + Spring Boot for data preprocessing).
+  - ru: >
+      Управление командой и процессами: Разрабатывал спецификации, технические задания и гайдлайны по различным проектам команды
+    en: >
+      Team & Process Management: Created specifications, technical tasks, and guidelines for various team projects.
+  - ru: >
+      Управление командой и процессами: Участвовал в найме разработчиков и аналитиков: провел более 20 собеседований.
+    en: >
+      Team & Process Management: Participated in hiring developers and analysts, conducted over 20 interviews.
+      
   technologies:
   - Java 20
   - Spring
@@ -540,3 +576,6 @@ work_experience:
   - OpenAPI
   - Oracle
   - Postgres
+  - Temporal
+  - Testcontainers
+  - C4
